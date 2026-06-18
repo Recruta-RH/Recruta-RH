@@ -250,11 +250,11 @@ input,select,textarea{transition:border-color .15s,box-shadow .15s}
       <div style="font-size:20px;font-weight:800;color:#0F172A">R&amp;S RH</div>
       <div style="font-size:12px;color:#64748B;margin-top:3px">Inteligencia em Pessoas</div>
     </div>
-    <form onsubmit="rsDoLogin();return false;" autocomplete="on" method="dialog">
+    <form onsubmit="rsDoLogin();return false;" autocomplete="on">
       <div style="margin-bottom:14px"><label style="font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Usuario</label><input id="rs-u" type="text" name="username" autocomplete="username" placeholder="Seu nome" style="width:100%;padding:10px 12px;border:1.5px solid #E5E7EB;border-radius:9px;font-size:13px;color:#0F172A;background:#F8FAFC;outline:none;box-sizing:border-box"/></div>
       <div style="margin-bottom:18px"><label style="font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Senha</label><input id="rs-p" type="password" name="password" autocomplete="current-password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" style="width:100%;padding:10px 12px;border:1.5px solid #E5E7EB;border-radius:9px;font-size:13px;color:#0F172A;background:#F8FAFC;outline:none;box-sizing:border-box"/></div>
       <div id="rs-err" style="display:none;background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:9px 12px;font-size:12px;color:#DC2626;margin-bottom:14px">Usuario ou senha incorretos.</div>
-      <button type="submit" style="width:100%;background:linear-gradient(135deg,#1E3A8A,#2563EB);color:#fff;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif">Entrar</button>
+      <button type="submit" onclick="rsDoLogin();return false;" style="width:100%;background:linear-gradient(135deg,#1E3A8A,#2563EB);color:#fff;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif">Entrar</button>
     </form>
   </div>
 </div>
