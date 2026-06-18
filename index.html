@@ -241,58 +241,30 @@ input,select,textarea{transition:border-color .15s,box-shadow .15s}
 </style>
 </head>
 <body>
-
-<!-- LOGIN -->
-<style>
-#rs-login{position:fixed!important;top:0!important;right:0!important;bottom:0!important;left:0!important;z-index:99999!important;}
-.rs-hidden{display:none!important;}
-</style>
+<style>#rs-login{position:fixed!important;top:0!important;right:0!important;bottom:0!important;left:0!important;z-index:99999!important;}.rs-hidden{display:none!important;}</style>
 <div id="vue-err" style="display:none;position:fixed;top:10px;left:10px;right:10px;background:#DC2626;color:#fff;padding:12px;border-radius:8px;z-index:999999;font-family:monospace;font-size:12px"></div>
 <div id="rs-login" style="position:fixed;top:0;right:0;bottom:0;left:0;background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 60%,#2563EB 100%);display:flex;align-items:center;justify-content:center;padding:20px;z-index:99999;font-family:Inter,sans-serif">
   <div style="background:#fff;border-radius:16px;padding:40px 36px;width:100%;max-width:380px;box-shadow:0 24px 64px rgba(0,0,0,.3)">
     <div style="text-align:center;margin-bottom:28px">
-      <div style="display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;background:linear-gradient(135deg,#1E3A8A,#2563EB);border-radius:14px;margin-bottom:12px">
-        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      </div>
+      <div style="display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;background:linear-gradient(135deg,#1E3A8A,#2563EB);border-radius:14px;margin-bottom:12px"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
       <div style="font-size:20px;font-weight:800;color:#0F172A">R&amp;S RH</div>
       <div style="font-size:12px;color:#64748B;margin-top:3px">Inteligencia em Pessoas</div>
     </div>
     <form onsubmit="rsDoLogin();return false;" autocomplete="on" method="dialog">
-      <div style="margin-bottom:14px">
-        <label style="font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Usuario</label>
-        <input id="rs-u" type="text" name="username" autocomplete="username" placeholder="Seu nome" style="width:100%;padding:10px 12px;border:1.5px solid #E5E7EB;border-radius:9px;font-size:13px;color:#0F172A;background:#F8FAFC;outline:none;box-sizing:border-box"/>
-      </div>
-      <div style="margin-bottom:18px">
-        <label style="font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Senha</label>
-        <input id="rs-p" type="password" name="password" autocomplete="current-password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" style="width:100%;padding:10px 12px;border:1.5px solid #E5E7EB;border-radius:9px;font-size:13px;color:#0F172A;background:#F8FAFC;outline:none;box-sizing:border-box"/>
-      </div>
+      <div style="margin-bottom:14px"><label style="font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Usuario</label><input id="rs-u" type="text" name="username" autocomplete="username" placeholder="Seu nome" style="width:100%;padding:10px 12px;border:1.5px solid #E5E7EB;border-radius:9px;font-size:13px;color:#0F172A;background:#F8FAFC;outline:none;box-sizing:border-box"/></div>
+      <div style="margin-bottom:18px"><label style="font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Senha</label><input id="rs-p" type="password" name="password" autocomplete="current-password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" style="width:100%;padding:10px 12px;border:1.5px solid #E5E7EB;border-radius:9px;font-size:13px;color:#0F172A;background:#F8FAFC;outline:none;box-sizing:border-box"/></div>
       <div id="rs-err" style="display:none;background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:9px 12px;font-size:12px;color:#DC2626;margin-bottom:14px">Usuario ou senha incorretos.</div>
       <button type="submit" style="width:100%;background:linear-gradient(135deg,#1E3A8A,#2563EB);color:#fff;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif">Entrar</button>
     </form>
   </div>
 </div>
 <script>
-window.RS_USERS=[
-  {id:'rodrigo',name:'Rodrigo Santos',firstName:'Rodrigo',password:'Rodrigo@2026',role:'admin'},
-  {id:'luciana',name:'Luciana Montozo',firstName:'Luciana',password:'Luciana@2026',role:'user'},
-  {id:'mariana',name:'Mariana Luduvice',firstName:'Mariana',password:'Mariana@2026',role:'user'}
-];
-function rsDoLogin(){
-  var u=(document.getElementById('rs-u').value||'').trim().toLowerCase();
-  var p=document.getElementById('rs-p').value||'';
-  var found=window.RS_USERS.find(function(x){return x.name.toLowerCase()===u||x.firstName.toLowerCase()===u||x.id===u;});
-  if(!found||found.password!==p){document.getElementById('rs-err').style.display='block';return;}
-  document.getElementById('rs-err').style.display='none';
-  try{localStorage.setItem('rsrh_user',found.id);}catch(e){}
-  if(window._vueSetUser)window._vueSetUser(found);
-}
+window.RS_USERS=[{id:'rodrigo',name:'Rodrigo Santos',firstName:'Rodrigo',password:'Rodrigo@2026',role:'admin'},{id:'luciana',name:'Luciana Montozo',firstName:'Luciana',password:'Luciana@2026',role:'user'},{id:'mariana',name:'Mariana Luduvice',firstName:'Mariana',password:'Mariana@2026',role:'user'}];
+function rsDoLogin(){var u=(document.getElementById('rs-u').value||'').trim().toLowerCase();var p=document.getElementById('rs-p').value||'';var found=window.RS_USERS.find(function(x){return x.name.toLowerCase()===u||x.firstName.toLowerCase()===u||x.id===u;});if(!found||found.password!==p){document.getElementById('rs-err').style.display='block';return;}document.getElementById('rs-err').style.display='none';try{localStorage.setItem('rsrh_user',found.id);}catch(e){}if(window._vueSetUser)window._vueSetUser(found);}
 (function(){try{var s=localStorage.getItem('rsrh_user');if(s){var u=window.RS_USERS.find(function(x){return x.id===s;});if(u)window.RS_USER=u;}}catch(e){}})();
 </script>
-
 <div id="app"></div>
-
 <script>
-
 
 
 
@@ -311,12 +283,10 @@ function _i(e,t){const n=ns(e);class s extends xi{constructor(e){super(n,e,t)}}r
 
 
 
-
 </script>
 <script>
 var __vueRenderFn;
-(function(){
-  var _buildRender=function(Vue){
+(function(){var _b=function(Vue){
 const _Vue = Vue
 
 return function render(_ctx, _cache) {
@@ -396,11 +366,19 @@ return function render(_ctx, _cache) {
                         [_vModelText, jbKeyInput]
                       ])
                     ]),
+                    _withDirectives(_createElementVNode("input", {
+                      "onUpdate:modelValue": $event => ((jbExistingId) = $event),
+                      type: "text",
+                      placeholder: "Bin ID existente (opcional)",
+                      style: {"width":"100%","padding":"8px 10px","border":"1px solid #E5E7EB","border-radius":"7px","font-size":"12px","margin-bottom":"8px","font-family":"monospace","box-sizing":"border-box"}
+                    }, null, 8 /* PROPS */, ["onUpdate:modelValue"]), [
+                      [_vModelText, jbExistingId]
+                    ]),
                     _createElementVNode("button", {
                       onClick: saveSyncConfig,
                       disabled: jbCreating||!jbKeyInput.trim(),
                       style: _normalizeStyle({width:'100%',background:jbCreating?'#F1F5F9':'#2563EB',color:jbCreating?'#64748B':'#fff',border:'none',borderRadius:'8px',padding:'11px',fontSize:'14px',fontWeight:700,cursor:jbCreating?'not-allowed':'pointer'})
-                    }, _toDisplayString(jbCreating?'Criando...':'Ativar compartilhamento'), 13 /* TEXT, STYLE, PROPS */, ["onClick", "disabled"])
+                    }, _toDisplayString(jbCreating?'Criando...':(jbExistingId&&jbExistingId.trim()?'Conectar ao bin existente':'Ativar compartilhamento')), 13 /* TEXT, STYLE, PROPS */, ["onClick", "disabled"])
                   ]))
                 : (_openBlock(), _createElementBlock("div", { key: 1 }, [
                     _createElementVNode("div", { style: {"background":"#F0FDF4","border-radius":"10px","padding":"14px 16px","margin-bottom":"16px"} }, [
@@ -761,6 +739,25 @@ return function render(_ctx, _cache) {
                   style: {"color":"#86EFAC","font-size":"10px","margin-top":"5px"}
                 }, "● " + _toDisplayString(saveMsg), 1 /* TEXT */))
               : _createCommentVNode("v-if", true)
+          ]),
+          _createElementVNode("div", { style: {"padding":"10px 12px","border-top":"1px solid rgba(255,255,255,.08)","display":"flex","align-items":"center","gap":"9px"} }, [
+            _createElementVNode("div", {
+              style: _normalizeStyle({width:'32px',height:'32px',borderRadius:'50%',background:'#2563EB',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'12px',fontWeight:700,color:'#fff',flexShrink:0})
+            }, _toDisplayString(currentUser&¤tUser.firstName?currentUser.firstName.slice(0,2).toUpperCase():'RH'), 5 /* TEXT, STYLE */),
+            _createElementVNode("div", { style: {"flex":"1","min-width":"0"} }, [
+              _createElementVNode("div", { style: {"font-size":"11.5px","font-weight":"600","color":"#fff","white-space":"nowrap","overflow":"hidden","text-overflow":"ellipsis"} }, _toDisplayString(currentUser?currentUser.name:'Convidado'), 1 /* TEXT */),
+              _createElementVNode("div", { style: {"font-size":"9.5px","color":"rgba(255,255,255,.45)"} }, _toDisplayString(currentUser&¤tUser.role==="admin"?"Administrador":"Recrutador(a)"), 1 /* TEXT */)
+            ]),
+            _createElementVNode("button", {
+              onClick: $event => (rsLogout()),
+              title: "Sair",
+              style: {"background":"none","border":"none","cursor":"pointer","color":"rgba(255,255,255,.5)","padding":"4px","border-radius":"6px","display":"flex","align-items":"center"}
+            }, [
+              _createElementVNode("i", {
+                class: "ti ti-logout",
+                style: {"font-size":"16px"}
+              })
+            ], 8 /* PROPS */, ["onClick"])
           ])
         ]),
         _createElementVNode("div", { style: {"flex":"1","overflow-y":"auto","background":"#F8FAFC"} }, [
@@ -786,8 +783,8 @@ return function render(_ctx, _cache) {
                       ])
                     ]),
                     _createElementVNode("div", { style: {"max-width":"520px"} }, [
-                      _createElementVNode("div", { style: {"font-size":"11px","font-weight":"600","color":"rgba(255,255,255,.7)","text-transform":"uppercase","letter-spacing":".08em","margin-bottom":"8px"} }, " Bem-vindo de volta"),
-                      _createElementVNode("h1", { style: {"font-size":"28px","font-weight":"800","color":"#fff","margin-bottom":"6px","letter-spacing":"-.4px"} }, "Bom dia, RH!"),
+                      _createElementVNode("div", { style: {"font-size":"11px","font-weight":"600","color":"rgba(255,255,255,.7)","text-transform":"uppercase","letter-spacing":".08em","margin-bottom":"8px"} }, _toDisplayString(greeting()) + ", " + _toDisplayString(currentUser ? currentUser.firstName : "") + "!", 1 /* TEXT */),
+                      _createElementVNode("h1", { style: {"font-size":"28px","font-weight":"800","color":"#fff","margin-bottom":"6px","letter-spacing":"-.4px"} }, _toDisplayString(greeting()) + ", " + _toDisplayString(currentUser ? currentUser.firstName : "RH") + "!", 1 /* TEXT */),
                       _createElementVNode("p", { style: {"font-size":"14px","color":"rgba(255,255,255,.85)","line-height":"1.6","margin-bottom":"20px"} }, [
                         _createTextVNode("Voce tem "),
                         _createElementVNode("strong", { style: {"color":"#fff"} }, _toDisplayString(candidates.filter(c=>c.status==='aguardando_lider').length) + " candidato(s)", 1 /* TEXT */),
@@ -3258,12 +3255,9 @@ return function render(_ctx, _cache) {
     ], 64 /* STABLE_FRAGMENT */))
   }
 }
-  };
-  try{__vueRenderFn=_buildRender(Vue);}catch(e){console.error('Render build error:',e);}
-})();
+};try{__vueRenderFn=_b(Vue);}catch(e){console.error('Render error:',e);}})();
 </script>
 <script>
-
 
 
 
@@ -3714,10 +3708,8 @@ function generateSummaryPDF(job,candidates){
 
 
 
-
 </script>
 <script>
-
 
 const {createApp,ref,computed,watch,onMounted}=Vue;
 createApp({
@@ -3730,15 +3722,9 @@ createApp({
   setup(){
 
     var currentUser=ref(null);
+    var jbExistingId=ref('');
     function greeting(){var h=new Date().getHours();return h<12?'Bom dia':h<18?'Boa tarde':'Boa noite';}
-    function rsLogout(){
-      try{localStorage.removeItem('rsrh_user');}catch(e){}
-      currentUser.value=null;
-      var el=document.getElementById('rs-login');
-      if(el){el.classList.remove('rs-hidden');el.style.display='flex';}
-      var u=document.getElementById('rs-u'),p=document.getElementById('rs-p');
-      if(u)u.value='';if(p)p.value='';
-    }
+    function rsLogout(){try{localStorage.removeItem('rsrh_user');}catch(e){}currentUser.value=null;var el=document.getElementById('rs-login');if(el){el.classList.remove('rs-hidden');el.style.display='flex';}var u=document.getElementById('rs-u'),p=document.getElementById('rs-p');if(u)u.value='';if(p)p.value='';}
     (function(){try{var s=localStorage.getItem('rsrh_user');if(s&&window.RS_USERS){var f=window.RS_USERS.find(function(x){return x.id===s;});if(f){currentUser.value=f;var el=document.getElementById('rs-login');if(el)el.classList.add('rs-hidden');}}}catch(e){}})();
     window._vueSetUser=function(u){currentUser.value=u;var el=document.getElementById('rs-login');if(el)el.classList.add('rs-hidden');};
     var navItems=[{id:'dashboard',label:'Dashboard',icon:'ti-layout-dashboard'},{id:'jobs',label:'Vagas',icon:'ti-briefcase'},{id:'candidates',label:'Candidatos',icon:'ti-users'},{id:'pipeline',label:'Pipeline',icon:'ti-git-merge'},{id:'analyze',label:'Analisar currículo',icon:'ti-file-search'},{id:'banco',label:'Banco de talentos',icon:'ti-database'}];
@@ -3950,13 +3936,10 @@ createApp({
     }
     function saveSyncConfig(){
       if(!jbKeyInput.value.trim())return;
-      jbCreating.value=true;
       var key=jbKeyInput.value.trim();
-      jsonBinCreate(key).then(function(id){
-        if(id){jbKey.value=key;jbBin.value=id;jbKeyInput.value='';showSyncModal.value=false;pushSync();flash('Compartilhamento ativado!');}
-        else{flash('Erro: verifique a chave JSONBin');}
-        jbCreating.value=false;
-      });
+      var existId=(jbExistingId.value||'').trim();
+      if(existId){jbKey.value=key;jbBin.value=existId;jbKeyInput.value='';jbExistingId.value='';showSyncModal.value=false;pullSync();flash('Conectado! Sincronizando...');}
+      else{jbCreating.value=true;jsonBinCreate(key).then(function(id){if(id){jbKey.value=key;jbBin.value=id;jbKeyInput.value='';jbExistingId.value='';showSyncModal.value=false;pushSync();flash('Compartilhamento ativado!');}else{flash('Erro: verifique a chave JSONBin');}jbCreating.value=false;});}
     }
     function deactivateSync(){jbKey.value='';jbBin.value='';jbStatus.value='';flash('Compartilhamento desativado');}
 
@@ -4253,7 +4236,7 @@ createApp({
     function cancelEditAnalysis(){editAnaMode.value=false;}
 
     return {
-      navItems,nav,currentUser,greeting,rsLogout,jobs,candidates,notes,apiKey,showApiModal,newApiKey,
+      navItems,nav,currentUser,greeting,rsLogout,jbExistingId,jobs,candidates,notes,apiKey,showApiModal,newApiKey,
       showJobModal,editingJob,jf,ejf,selJobId,pdfFile,isDragging,
       isAnalyzing,analyzeStep,latestResult,viewCand,error,pipFilter,saveMsg,
       isGenSum,genSumStep,metrics,dashCards,filtCands,vcTrans,scoreBars,execBlocks,summaryRows,STAGES,
@@ -4270,7 +4253,5 @@ createApp({
 }).mount('#app');
 
 
-
 </script>
-</body>
-</html>
+</body></html>
