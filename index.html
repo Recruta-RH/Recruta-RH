@@ -1067,7 +1067,7 @@ function rsDoLogin(){
 
                 <!-- ③ Score bars 2×2 -->
                 <div v-if="viewCand.analysis.score" style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px">
-                  <div v-for="d in [{l:'Hard Skills',v:viewCand.analysis.score.hardSkills||0,m:50,ic:'ti-code'},{l:'Experiência',v:viewCand.analysis.score.experience||0,m:25,ic:'ti-briefcase'},{l:'Soft Skills',v:viewCand.analysis.score.softSkills||0,m:15,ic:'ti-users'},{l:'Fit Cultural',v:viewCand.analysis.score.culturalFit||0,m:10,ic:'ti-heart'}]" :key="d.l"
+                  <div v-for="d in [{l:'Hard Skills',v:viewCand.analysis.score.hardSkills||0,m:50,ic:'ti-code'},{l:'Experiencia',v:viewCand.analysis.score.experience||0,m:25,ic:'ti-briefcase'},{l:'Soft Skills',v:viewCand.analysis.score.softSkills||0,m:15,ic:'ti-users'},{l:'Fit Cultural',v:viewCand.analysis.score.culturalFit||0,m:10,ic:'ti-heart'}]" :key="d.l"
                     style="background:#fff;border:1px solid #E5E7EB;border-radius:9px;padding:9px 11px">
                     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">
                       <div style="display:flex;align-items:center;gap:5px">
@@ -1375,7 +1375,7 @@ function rsDoLogin(){
             <div v-if="latestResult.analysis&&latestResult.analysis.score" style="padding:14px 20px;border-bottom:1px solid #E5E7EB">
               <div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Avaliação por dimensão</div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                <div v-for="d in [{l:'Hard Skills',v:latestResult.analysis.score.hardSkills||0,m:50},{l:'Experiência',v:latestResult.analysis.score.experience||0,m:25},{l:'Soft Skills',v:latestResult.analysis.score.softSkills||0,m:15},{l:'Fit Cultural',v:latestResult.analysis.score.culturalFit||0,m:10}]" :key="d.l">
+                <div v-for="d in [{l:'Hard Skills',v:latestResult.analysis.score.hardSkills||0,m:50},{l:'Experiencia',v:latestResult.analysis.score.experience||0,m:25},{l:'Soft Skills',v:latestResult.analysis.score.softSkills||0,m:15},{l:'Fit Cultural',v:latestResult.analysis.score.culturalFit||0,m:10}]" :key="d.l">
                   <div style="display:flex;justify-content:space-between;margin-bottom:3px">
                     <span style="font-size:11px;color:#64748B">{{d.l}}</span>
                     <span :style="{fontSize:'11px',fontWeight:700,color:scoreColor(Math.round(d.v/d.m*100))}">{{d.v}}/{{d.m}}</span>
@@ -1449,8 +1449,8 @@ function rsDoLogin(){
                   <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap">
                     <span v-if="c.analysis&&c.analysis.classification" :style="{fontSize:'9.5px',fontWeight:600,padding:'2px 7px',borderRadius:'99px',background:scoreBgCol(c.analysis&&c.analysis.score&&c.analysis.score.total||0),color:scoreColor(c.analysis&&c.analysis.score&&c.analysis.score.total||0)}">{{c.analysis.classification}}</span>
                     <span v-if="c.analysis&&c.analysis.culturalFit" style="font-size:9.5px;color:#64748B;display:flex;align-items:center;gap:2px">
-                      <i class="ti ti-heart" :style="{fontSize:'10px',color:c.analysis.culturalFit.level==='Alto fit cultural'?'#16A34A':c.analysis.culturalFit.level==='Médio fit cultural'?'#EA580C':'#DC2626'}"></i>
-                      <span :style="{color:c.analysis.culturalFit.level==='Alto fit cultural'?'#16A34A':c.analysis.culturalFit.level==='Médio fit cultural'?'#EA580C':'#DC2626'}">{{c.analysis.culturalFit.level.replace(' fit cultural','')}}</span>
+                      <i class="ti ti-heart" :style="{fontSize:'10px',color:c.analysis.culturalFit.level==='Alto fit cultural'?'#16A34A':c.analysis.culturalFit.level==='Medio fit cultural'?'#EA580C':'#DC2626'}"></i>
+                      <span :style="{color:c.analysis.culturalFit.level==='Alto fit cultural'?'#16A34A':c.analysis.culturalFit.level==='Medio fit cultural'?'#EA580C':'#DC2626'}">{{c.analysis.culturalFit.level.replace(' fit cultural','')}}</span>
                     </span>
                   </div>
                 </div>
@@ -1562,7 +1562,7 @@ function rsDoLogin(){
               </div>
               <!-- Score mini bars -->
               <div v-if="c.analysis&&c.analysis.score" style="display:grid;grid-template-columns:1fr 1fr;gap:5px 14px">
-                <div v-for="d in [{l:'Hard Skills',v:c.analysis.score.hardSkills||0,m:50},{l:'Experiência',v:c.analysis.score.experience||0,m:25}]" :key="d.l">
+                <div v-for="d in [{l:'Hard Skills',v:c.analysis.score.hardSkills||0,m:50},{l:'Experiencia',v:c.analysis.score.experience||0,m:25}]" :key="d.l">
                   <div style="display:flex;justify-content:space-between;margin-bottom:2px">
                     <span style="font-size:9.5px;color:#94A3B8">{{d.l}}</span>
                     <span :style="{fontSize:'9.5px',fontWeight:700,color:scoreColor(Math.round(d.v/d.m*100))}">{{d.v}}/{{d.m}}</span>
@@ -2150,6 +2150,7 @@ createApp({
     var jbStatus=ref('');
     var showSyncModal=ref(false);
     var jbKeyInput=ref('');
+    var jbExistingId=ref('');
     var jbCreating=ref(false);
     // Summary field editing
     var editingField=ref(null);
