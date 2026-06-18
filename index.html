@@ -296,7 +296,7 @@ function rsDoLogin(){
 <div id="vue-err" style="display:none"></div>
 <div id="app">
   <script type="text/html" id="app-tpl">
-<!-- API MODAL -->
+
 <div v-if="showApiModal" style="position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:999">
   <div style="background:#fff;border-radius:12px;padding:28px;width:440px;max-width:calc(100vw - 32px);border:1px solid #E5E7EB">
     <p style="font-weight:700;font-size:17px;margin-bottom:6px">Chave da API Anthropic</p>
@@ -306,14 +306,14 @@ function rsDoLogin(){
   </div>
 </div>
 
-<!-- SYNC MODAL -->
+
 <div v-if="showSyncModal" style="position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:999">
   <div style="background:#fff;border-radius:14px;padding:28px;width:480px;max-width:calc(100vw - 32px);border:1px solid #E5E7EB">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
       <p style="font-weight:700;font-size:16px">Compartilhamento em tempo real</p>
       <button @click="showSyncModal=false" style="background:none;border:none;cursor:pointer;font-size:22px;color:#64748B">&#10005;</button>
     </div>
-    <p style="font-size:13px;color:#64748B;margin-bottom:20px;line-height:1.6">Usa o <strong>JSONBin.io</strong> (gratuito) para sincronizar dados entre todos os usuários. <a href="https://jsonbin.io" target="_blank" style="color:#2563EB">Crie sua conta</a>, depois vá em Account → API Keys e copie a <strong>Master Key</strong>.</p>
+    <p style="font-size:13px;color:#64748B;margin-bottom:20px;line-height:1.6">Usa o <strong>JSONBin.io</strong> (gratuito) para sincronizar dados entre todos os usuários. <a href="https://jsonbin.io" target="_blank" style="color:#2563EB">Crie sua conta</a>, depois vá em Account > API Keys e copie a <strong>Master Key</strong>.</p>
     <div v-if="!jbBin">
       <label style="font-size:12px;color:#64748B;display:block;margin-bottom:12px">Master Key<input v-model="jbKeyInput" type="password" placeholder="$2b$..." style="display:block;margin-top:4px"/></label>
       <button @click="saveSyncConfig" :disabled="jbCreating||!jbKeyInput.trim()" :style="{width:'100%',background:jbCreating?'#F1F5F9':'#2563EB',color:jbCreating?'#64748B':'#fff',border:'none',borderRadius:'8px',padding:'11px',fontSize:'14px',fontWeight:700,cursor:jbCreating?'not-allowed':'pointer'}">{{jbCreating?'Criando...':'Ativar compartilhamento'}}</button>
@@ -331,7 +331,7 @@ function rsDoLogin(){
   </div>
 </div>
 
-<!-- EDIT JOB MODAL -->
+
 <div v-if="editingJob" style="position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:100">
   <div style="background:#fff;border-radius:12px;padding:24px;width:560px;max-width:calc(100vw - 32px);max-height:90vh;overflow-y:auto;border:1px solid #E5E7EB">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
@@ -366,7 +366,7 @@ function rsDoLogin(){
   </div>
 </div>
 
-<!-- NEW JOB MODAL -->
+
 <div v-if="showJobModal" style="position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:100">
   <div style="background:#fff;border-radius:12px;padding:24px;width:560px;max-width:calc(100vw - 32px);max-height:90vh;overflow-y:auto;border:1px solid #E5E7EB">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
@@ -389,11 +389,11 @@ function rsDoLogin(){
   </div>
 </div>
 
-<!-- APP LAYOUT -->
+
 <div style="display:flex;min-height:100vh">
 
   
-      <!-- MANUAL CANDIDATE MODAL -->
+      
       <div v-if="showManualModal" style="position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:999">
         <div style="background:#fff;border-radius:12px;padding:24px;width:460px;max-width:95vw;box-shadow:0 20px 48px rgba(0,0,0,.15)">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
@@ -435,7 +435,7 @@ function rsDoLogin(){
           </div>
         </div>
       </div>
-<!-- SIDEBAR -->
+
   <div style="width:200px;background:#0F172A;display:flex;flex-direction:column;min-height:100vh">
     <div style="padding:20px 16px 16px;border-bottom:1px solid rgba(255,255,255,.06)">
       <div style="display:flex;align-items:center;gap:9px;margin-bottom:2px">
@@ -472,19 +472,19 @@ function rsDoLogin(){
     </div>
   </div>
 
-  <!-- MAIN -->
+  
   <div style="flex:1;overflow-y:auto;background:#F8FAFC">
     <div style="max-width:960px;margin:0 auto;padding:24px 28px">
 
-      <!-- ━━ DASHBOARD ━━ -->
+      
       <div v-if="nav==='dashboard'">
-        <!-- ╔═══ HERO SECTION ═══╗ -->
+        
         <div style="position:relative;background:linear-gradient(135deg,#1E3A8A 0%,#2563EB 45%,#3B82F6 75%,#60A5FA 100%);border-radius:16px;padding:28px 32px;margin-bottom:20px;overflow:hidden">
-          <!-- bg decoration circles -->
+          
           <div style="position:absolute;top:-40px;right:220px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none"></div>
           <div style="position:absolute;bottom:-60px;right:80px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none"></div>
           <div style="position:absolute;top:10px;right:40px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none"></div>
-          <!-- floating mini-cards decoration -->
+          
           <div style="position:absolute;right:32px;top:50%;transform:translateY(-50%);display:flex;gap:10px;align-items:center;pointer-events:none">
             <div style="background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:14px 18px;text-align:center">
               <div style="font-size:22px;font-weight:800;color:#fff">{{jobs.filter(j=>j.status==='aberta').length}}</div>
@@ -499,7 +499,7 @@ function rsDoLogin(){
               <div style="font-size:10px;color:rgba(255,255,255,.8);margin-top:2px">Contratações</div>
             </div>
           </div>
-          <!-- content -->
+          
           <div style="max-width:520px">
             <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">{{greeting()}}, {{currentUser ? currentUser.firstName : ""}}!</div>
             <h1 style="font-size:28px;font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:-.4px">{{greeting()}}, {{currentUser ? currentUser.firstName : "RH"}}!</h1>
@@ -508,7 +508,7 @@ function rsDoLogin(){
               <button @click="showJobModal=true" style="background:#fff;color:#1E3A8A;border:none;border-radius:9px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:Inter,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.15)"><i class="ti ti-plus"></i> Nova vaga</button>
               <button @click="goTo('analyze')" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:9px;padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:Inter,sans-serif"><i class="ti ti-file-search"></i> Analisar Currículo</button>
               <button @click="showSyncModal=true" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2);border-radius:9px;padding:9px 14px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:Inter,sans-serif"><i class="ti ti-refresh"></i></button>
-              <!-- Global period filter -->
+              
               <div style="position:relative">
                 <select v-model="filterMonth" style="appearance:none;-webkit-appearance:none;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:9px;padding:8px 32px 8px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;outline:none">
                   <option value="" style="background:#1E3A8A;color:#fff">Todos os períodos</option>
@@ -520,7 +520,7 @@ function rsDoLogin(){
           </div>
         </div>
 
-        <!-- KPIs principais -->
+        
         <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:12px">
           <div v-for="(k,ki) in dashCards.slice(0,5)" :key="k.label" @click="k.link&&goTo(k.link)" :style="{background:'#fff',border:'1px solid #E5E7EB',borderRadius:'12px',padding:'16px 16px 14px',position:'relative',overflow:'hidden',boxShadow:'0 1px 3px rgba(15,23,42,.05)',cursor:k.link?'pointer':'default',transition:'all .15s'}" style="box-shadow:0 1px 3px rgba(15,23,42,.05)">
             <div :style="{position:'absolute',top:0,left:0,right:0,height:'3px',background:k.col,borderRadius:'12px 12px 0 0'}"></div>
@@ -535,7 +535,7 @@ function rsDoLogin(){
           </div>
         </div>
 
-        <!-- KPIs secundários + SLA -->
+        
         <div style="display:grid;grid-template-columns:1fr 240px;gap:10px;margin-bottom:12px;align-items:start">
           <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
             <div v-for="k in dashCards.slice(5,9)" :key="k.label" @click="k.link&&goTo(k.link)" :style="{cursor:k.link?'pointer':'default'}" style="background:#fff;border:1px solid #E5E7EB;border-radius:9px;padding:10px 12px">
@@ -543,11 +543,11 @@ function rsDoLogin(){
               <div style="font-size:10px;color:#64748B">{{k.label}}</div>
             </div>
           </div>
-          <!-- SLA block with donut -->
+          
           <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:14px 16px;box-shadow:0 1px 3px rgba(15,23,42,.05)">
             <div style="font-size:11px;font-weight:700;color:#0F172A;margin-bottom:12px;display:flex;align-items:center;gap:6px"><i class="ti ti-clock" style="color:#2563EB;font-size:14px"></i> Controle de SLA</div>
             <div style="display:flex;align-items:center;gap:14px">
-              <!-- SVG Donut -->
+              
               <div style="position:relative;flex-shrink:0">
                 <svg width="72" height="72" viewBox="0 0 72 72">
                   <circle cx="36" cy="36" r="28" fill="none" stroke="#F1F5F9" stroke-width="10"/>
@@ -561,7 +561,7 @@ function rsDoLogin(){
                   <text x="36" y="40" text-anchor="middle" style="font-size:13px;font-weight:800;font-family:Inter,sans-serif;fill:#0F172A">{{(slaStats&&(slaStats.on+slaStats.near+slaStats.over))||0}}</text>
                 </svg>
               </div>
-              <!-- Legend -->
+              
               <div style="flex:1;display:flex;flex-direction:column;gap:5px">
                 <div style="display:flex;align-items:center;justify-content:space-between">
                   <div style="display:flex;align-items:center;gap:5px"><div style="width:8px;height:8px;border-radius:50%;background:#16A34A"></div><span style="font-size:11px;color:#64748B">No prazo</span></div>
@@ -580,9 +580,9 @@ function rsDoLogin(){
           </div>
         </div>
 
-        <!-- ALERTAS + INSIGHTS -->
+        
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
-          <!-- Alertas com tabs -->
+          
           <div style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;overflow:hidden">
             <div style="padding:11px 14px;border-bottom:1px solid #E5E7EB;display:flex;align-items:center;justify-content:space-between">
               <div style="font-size:12px;font-weight:700;color:#0F172A;display:flex;align-items:center;gap:6px"><i class="ti ti-alert-circle" style="color:#DC2626;font-size:14px"></i> Alertas operacionais</div>
@@ -592,7 +592,7 @@ function rsDoLogin(){
               <button @click="alertTab='vaga'" :style="{padding:'6px 10px',border:'none',background:'none',cursor:'pointer',fontSize:'11px',fontFamily:'Inter,sans-serif',color:alertTab==='vaga'?'#2563EB':'#64748B',borderBottom:alertTab==='vaga'?'2px solid #2563EB':'2px solid transparent',fontWeight:alertTab==='vaga'?600:400}">Vagas</button>
               <button @click="alertTab='proc'" :style="{padding:'6px 10px',border:'none',background:'none',cursor:'pointer',fontSize:'11px',fontFamily:'Inter,sans-serif',color:alertTab==='proc'?'#2563EB':'#64748B',borderBottom:alertTab==='proc'?'2px solid #2563EB':'2px solid transparent',fontWeight:alertTab==='proc'?600:400}">Processos</button>
             </div>
-            <!-- Candidatos alerts -->
+            
             <div v-if="alertTab==='cand'">
               <div v-if="candidates.filter(c=>['entrevista_rh','entrevista_lider'].includes(c.status)).length>0" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #F8FAFC;cursor:pointer;transition:background .15s" @click="goTo('pipeline')">
                 <div style="width:34px;height:34px;border-radius:9px;background:#FFF7ED;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-users" style="font-size:16px;color:#EA580C"></i></div>
@@ -620,21 +620,21 @@ function rsDoLogin(){
               </div>
               <div v-if="candidates.filter(c=>['entrevista_rh','entrevista_lider','aguardando_lider','banco'].includes(c.status)).length===0" style="padding:16px 14px;font-size:12px;color:#64748B;text-align:center">Nenhum alerta de candidatos</div>
             </div>
-            <!-- Vagas alerts -->
+            
             <div v-if="alertTab==='vaga'">
               <div v-for="j in jobs.filter(j=>j.status==='aberta')" :key="j.id">
                 <div v-if="bizDaysSince(j.openDate)>10" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #F8FAFC;cursor:pointer;background:#FFF5F5;transition:background .15s" @click="goTo('jobs')">
                   <div style="width:34px;height:34px;border-radius:9px;background:#FEF2F2;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-briefcase" style="font-size:15px;color:#DC2626"></i></div>
                   <div style="flex:1">
                     <div style="font-size:12px;font-weight:500;color:#0F172A;line-height:1.4">{{j.title}}</div>
-                    <div style="font-size:10.5px;color:#DC2626;margin-top:1px">{{bizDaysSince(j.openDate)}} dias uteis — SLA vencido (meta: 10d)</div>
+                    <div style="font-size:10.5px;color:#DC2626;margin-top:1px">{{bizDaysSince(j.openDate)}} dias uteis - SLA vencido (meta: 10d)</div>
                   </div>
                   <i class="ti ti-chevron-right" style="font-size:14px;color:#CBD5E1"></i>
                 </div>
               </div>
               <div v-if="jobs.filter(j=>j.status==='aberta'&&bizDaysSince(j.openDate)>10).length===0" style="padding:16px 14px;font-size:12px;color:#64748B;text-align:center">Todas as vagas dentro do SLA</div>
             </div>
-            <!-- Processos alerts -->
+            
             <div v-if="alertTab==='proc'">
               <div v-if="candidates.filter(c=>c.status==='proposta').length>0" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #F8FAFC;cursor:pointer;background:#F0FDF4;transition:background .15s" @click="goTo('pipeline')">
                 <div style="width:34px;height:34px;border-radius:9px;background:#DCFCE7;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-send" style="font-size:15px;color:#16A34A"></i></div>
@@ -646,12 +646,12 @@ function rsDoLogin(){
               </div>
               <div style="display:flex;align-items:flex-start;gap:8px;padding:9px 14px">
                 <div style="width:7px;height:7px;border-radius:50%;background:#2563EB;flex-shrink:0;margin-top:4px"></div>
-                <div style="font-size:12px;color:#0F172A;line-height:1.4">{{candidates.length}} curriculos triados · taxa de aprovacao: {{metrics.total>0?Math.round(metrics.contratados/metrics.total*100):0}}%</div>
+                <div style="font-size:12px;color:#0F172A;line-height:1.4">{{candidates.length}} curriculos triados . taxa de aprovacao: {{metrics.total>0?Math.round(metrics.contratados/metrics.total*100):0}}%</div>
               </div>
             </div>
           </div>
 
-          <!-- Insights + Produtividade -->
+          
           <div style="display:flex;flex-direction:column;gap:10px">
             <div style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;overflow:hidden">
               <div style="padding:11px 14px;border-bottom:1px solid #E5E7EB;font-size:12px;font-weight:700;color:#0F172A">Insights de recrutamento</div>
@@ -686,7 +686,7 @@ function rsDoLogin(){
           </div>
         </div>
 
-        <!-- ✨ INSIGHTS INTELIGENTES ─────────────────────────────── -->
+        
         <div style="background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 60%,#2563EB 100%);border-radius:14px;padding:18px 20px;margin-bottom:12px">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
             <div style="width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0">
@@ -699,7 +699,7 @@ function rsDoLogin(){
           </div>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
 
-            <!-- Top candidato -->
+            
             <div v-if="candidates.filter(c=>c.analysis&&c.analysis.score&&c.analysis.score.total>=80).length" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;cursor:pointer" @click="goToFiltered('candidates','alta_aderencia')">
               <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
                 <i class="ti ti-trophy" style="font-size:13px;color:#FCD34D"></i>
@@ -708,7 +708,7 @@ function rsDoLogin(){
               <div style="font-size:12px;font-weight:600;color:#fff;margin-bottom:3px">
                 {{candidates.filter(c=>c.analysis&&c.analysis.score&&c.analysis.score.total>=80).length}} candidato(s) com aderência alta
               </div>
-              <div style="font-size:10.5px;color:rgba(255,255,255,.65)">Score ≥ 80 pts · prontos para entrevista</div>
+              <div style="font-size:10.5px;color:rgba(255,255,255,.65)">Score >= 80 pts . prontos para entrevista</div>
             </div>
             <div v-else style="background:rgba(255,255,255,.07);border:1px dashed rgba(255,255,255,.2);border-radius:10px;padding:12px 14px">
               <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
@@ -718,7 +718,7 @@ function rsDoLogin(){
               <div style="font-size:11px;color:rgba(255,255,255,.5)">Nenhum candidato com score alto ainda</div>
             </div>
 
-            <!-- SLA em risco -->
+            
             <div v-if="jobs.filter(j=>j.status==='aberta'&&bizDaysSince(j.openDate)>=8).length" style="background:rgba(234,88,12,.2);border:1px solid rgba(234,88,12,.4);border-radius:10px;padding:12px 14px;cursor:pointer" @click="goTo('jobs')">
               <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
                 <i class="ti ti-alert-triangle" style="font-size:13px;color:#FB923C"></i>
@@ -738,7 +738,7 @@ function rsDoLogin(){
               <div style="font-size:10.5px;color:rgba(255,255,255,.65)">Nenhuma vaga com risco de SLA</div>
             </div>
 
-            <!-- Banco de talentos -->
+            
             <div v-if="candidates.filter(c=>c.status==='banco'&&c.analysis&&c.analysis.score&&c.analysis.score.total>=70).length" style="background:rgba(99,102,241,.2);border:1px solid rgba(99,102,241,.4);border-radius:10px;padding:12px 14px;cursor:pointer" @click="goToFiltered('banco','banco_70')">
               <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
                 <i class="ti ti-database" style="font-size:13px;color:#A5B4FC"></i>
@@ -747,7 +747,7 @@ function rsDoLogin(){
               <div style="font-size:12px;font-weight:600;color:#fff;margin-bottom:3px">
                 {{candidates.filter(c=>c.status==='banco'&&c.analysis&&c.analysis.score&&c.analysis.score.total>=70).length}} talento(s) disponíveis
               </div>
-              <div style="font-size:10.5px;color:rgba(255,255,255,.65)">Score ≥ 70 · prontos para reaproveitamento</div>
+              <div style="font-size:10.5px;color:rgba(255,255,255,.65)">Score >= 70 . prontos para reaproveitamento</div>
             </div>
             <div v-else style="background:rgba(255,255,255,.07);border:1px dashed rgba(255,255,255,.2);border-radius:10px;padding:12px 14px">
               <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
@@ -759,7 +759,7 @@ function rsDoLogin(){
 
           </div>
 
-          <!-- Row 2: métricas rápidas -->
+          
           <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1)">
             <div style="text-align:center">
               <div style="font-size:18px;font-weight:800;color:#fff">{{candidates.filter(c=>c.status==='aguardando_lider').length}}</div>
@@ -780,7 +780,7 @@ function rsDoLogin(){
           </div>
         </div>
 
-        <!-- Pipeline chart -->
+        
         <div style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:14px 16px">
           <div style="font-size:12px;font-weight:700;color:#0F172A;margin-bottom:12px">Pipeline de recrutamento</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -792,7 +792,7 @@ function rsDoLogin(){
         </div>
       </div>
 
-      <!-- ━━ VAGAS ━━ -->
+      
       <div v-else-if="nav==='jobs'">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
           <div>
@@ -850,7 +850,7 @@ function rsDoLogin(){
           </table>
         </div>
 
-        <!-- Vagas por área -->
+        
         <div v-if="[...new Set(jobs.map(j=>j.dept||'Sem area'))].length>1" style="margin-top:14px;background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:16px 18px;box-shadow:0 1px 3px rgba(15,23,42,.04)">
           <div style="font-size:12px;font-weight:700;color:#0F172A;margin-bottom:14px;display:flex;align-items:center;gap:7px"><i class="ti ti-chart-bar" style="font-size:14px;color:#2563EB"></i> Vagas em aberto por área</div>
           <div style="display:flex;flex-direction:column;gap:8px">
@@ -870,7 +870,7 @@ function rsDoLogin(){
           <div v-if="!jobs.filter(j=>j.status==='aberta').length" style="font-size:12px;color:#94A3B8;text-align:center;padding:12px">Nenhuma vaga aberta</div>
         </div>
 
-        <!-- INDICADORES ESTRATÉGICOS -->
+        
         <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
 
           <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:16px 18px">
@@ -940,7 +940,7 @@ function rsDoLogin(){
         </div>
       </div>
 
-      <!-- ━━ CANDIDATOS 2-col ━━ -->
+      
       <div v-else-if="nav==='candidates'" style="padding:0">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px">
           <div>
@@ -958,7 +958,7 @@ function rsDoLogin(){
           <button @click="goTo('analyze')" style="background:#2563EB;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;cursor:pointer">Analisar primeiro candidato</button>
         </div>
         <div v-else style="display:grid;grid-template-columns:270px 1fr;background:#fff;border:1px solid #E5E7EB;border-radius:12px;height:calc(100vh - 158px);min-height:500px">
-          <!-- LISTA -->
+          
           <div style="border-right:1px solid #E5E7EB;display:flex;flex-direction:column">
             <div style="padding:12px 12px 0">
               <div style="position:relative"><i class="ti ti-search" style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#94A3B8;font-size:14px"></i><input v-model="candSearch" placeholder="Buscar candidato..." style="width:100%;padding:7px 10px 7px 30px;border:1px solid #E5E7EB;border-radius:7px;font-size:12px;font-family:Inter,sans-serif;color:#0F172A;outline:none;background:#F8FAFC"/></div>
@@ -981,13 +981,13 @@ function rsDoLogin(){
               <div v-if="!(filteredCands&&filteredCands.length)" style="padding:24px;text-align:center;font-size:12px;color:#64748B">Nenhum candidato encontrado</div>
             </div>
           </div>
-          <!-- DETALHE -->
+          
           <div v-if="!viewCand" style="display:flex;align-items:center;justify-content:center;flex-direction:column;color:#94A3B8">
             <i class="ti ti-user" style="font-size:40px;margin-bottom:10px;opacity:.3"></i>
             <p style="font-size:13px">Selecione um candidato</p>
           </div>
           <div v-else style="overflow-y:auto;height:100%">
-            <!-- HERO -->
+            
             <div style="padding:16px 18px;background:#FAFBFF;border-bottom:1px solid #E5E7EB">
               <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px">
                 <div style="width:44px;height:44px;border-radius:50%;background:#2563EB;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff">{{initials(viewCand.name)}}</div>
@@ -1008,7 +1008,7 @@ function rsDoLogin(){
                   <div style="font-size:9px;color:#64748B">Score</div>
                 </div>
               </div>
-              <!-- Recommendation banner -->
+              
               <div v-if="viewCand.analysis&&viewCand.analysis.recommendation" :style="{padding:'8px 11px',borderRadius:'8px',display:'flex',alignItems:'center',gap:'8px',marginBottom:'10px',background:recMeta(viewCand.analysis.recommendation).bg,borderLeft:'3px solid '+recMeta(viewCand.analysis.recommendation).color}">
                 <i class="ti ti-circle-check" :style="{color:recMeta(viewCand.analysis.recommendation).color,fontSize:'15px',flexShrink:0}"></i>
                 <div>
@@ -1017,14 +1017,14 @@ function rsDoLogin(){
               </div>
 
             </div>
-            <!-- ETAPA + AÇÕES -->
+            
             <div style="padding:12px 18px;border-bottom:1px solid #E5E7EB;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
               <div v-for="t in vcTrans" :key="t.to">
                 <button @click="advanceStatus(viewCand.id,t.to)" :style="{background:t.style==='primary'?'#2563EB':'none',color:t.style==='primary'?'#fff':t.style==='danger'?'#DC2626':'#64748B',border:t.style==='primary'?'none':t.style==='danger'?'1px solid #FCA5A5':'1px solid #E5E7EB',borderRadius:'7px',padding:'6px 12px',fontSize:'12px',cursor:'pointer',fontWeight:t.style==='primary'?600:400,fontFamily:'Inter,sans-serif'}">{{t.label}}</button>
               </div>
               <button v-if="viewCand.pdfBase64" @click="downloadPdf(viewCand.pdfBase64,viewCand.pdfName||viewCand.name+'.pdf')" style="margin-left:auto;background:none;border:1px solid #E5E7EB;border-radius:7px;padding:6px 12px;font-size:11.5px;cursor:pointer;color:#64748B;font-family:Inter,sans-serif"><i class="ti ti-download" style="font-size:13px;vertical-align:-2px"></i> Baixar curriculo</button>
             </div>
-            <!-- TABS -->
+            
             <div style="display:flex;padding:0 18px;border-bottom:1px solid #E5E7EB">
               <button @click="detTab='ai'" :style="{padding:'7px 10px',border:'none',background:'none',cursor:'pointer',fontSize:'12px',fontFamily:'Inter,sans-serif',color:detTab==='ai'?'#2563EB':'#64748B',borderBottom:detTab==='ai'?'2px solid #2563EB':'2px solid transparent',marginBottom:'-1px',fontWeight:detTab==='ai'?600:400}">Análise do Perfil</button>
               <button @click="detTab='interview'" :style="{padding:'7px 10px',border:'none',background:'none',cursor:'pointer',fontSize:'12px',fontFamily:'Inter,sans-serif',color:detTab==='interview'?'#2563EB':'#64748B',borderBottom:detTab==='interview'?'2px solid #2563EB':'2px solid transparent',marginBottom:'-1px',fontWeight:detTab==='interview'?600:400}">Entrevista RH</button>
@@ -1033,12 +1033,12 @@ function rsDoLogin(){
               <button v-if="getSummary(viewCand.id)" @click="dlParecer(viewCand)" style="margin-left:auto;background:#2563EB;color:#fff;border:none;border-radius:7px;padding:5px 10px;font-size:11px;cursor:pointer;font-family:Inter,sans-serif;align-self:center"><i class="ti ti-download" style="font-size:12px;vertical-align:-2px"></i> Parecer PDF</button>
               <button v-if="viewCand&&viewCand.analysis" @click="downloadAnalysisPDF(viewCand)" style="background:none;border:1px solid #2563EB;border-radius:7px;padding:5px 10px;font-size:11px;cursor:pointer;font-family:Inter,sans-serif;color:#2563EB;align-self:center;display:flex;align-items:center;gap:4px"><i class="ti ti-download" style="font-size:12px;vertical-align:-2px"></i> Análise PDF</button>
             </div>
-            <!-- TAB CONTENT -->
+            
             <div style="overflow:auto;padding:14px 18px">
-              <!-- AI Tab — Painel Executivo -->
+              
               <div v-if="detTab==='ai'&&viewCand.analysis">
 
-                <!-- ① Score + Recomendação -->
+                
                 <div style="background:linear-gradient(135deg,#0F172A,#1E3A8A);border-radius:12px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:14px">
                   <svg width="54" height="54" viewBox="0 0 54 54" style="flex-shrink:0">
                     <circle cx="27" cy="27" r="22" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="5"/>
@@ -1059,13 +1059,13 @@ function rsDoLogin(){
                   </div>
                 </div>
 
-                <!-- ② Resumo Executivo -->
+                
                 <div v-if="viewCand.analysis.executiveSummary&&viewCand.analysis.executiveSummary.strengths" style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:11px 14px;margin-bottom:10px">
                   <div style="font-size:9px;font-weight:700;color:#1D4ED8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;display:flex;align-items:center;gap:5px"><i class="ti ti-sparkles" style="font-size:11px"></i> Resumo Executivo</div>
                   <p style="font-size:12px;color:#1e293b;line-height:1.7;margin:0">{{viewCand.analysis.executiveSummary.strengths}}</p>
                 </div>
 
-                <!-- ③ Score bars 2×2 -->
+                
                 <div v-if="viewCand.analysis.score" style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px">
                   <div v-for="d in [{l:'Hard Skills',v:viewCand.analysis.score.hardSkills||0,m:50,ic:'ti-code'},{l:'Experiencia',v:viewCand.analysis.score.experience||0,m:25,ic:'ti-briefcase'},{l:'Soft Skills',v:viewCand.analysis.score.softSkills||0,m:15,ic:'ti-users'},{l:'Fit Cultural',v:viewCand.analysis.score.culturalFit||0,m:10,ic:'ti-heart'}]" :key="d.l"
                     style="background:#fff;border:1px solid #E5E7EB;border-radius:9px;padding:9px 11px">
@@ -1082,56 +1082,56 @@ function rsDoLogin(){
                   </div>
                 </div>
 
-                <!-- ④ Hard Skills + Soft Skills chips -->
+                
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
                   <div style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:10px 12px">
                     <div style="font-size:9px;font-weight:700;color:#1D4ED8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px;display:flex;align-items:center;gap:4px"><i class="ti ti-code" style="font-size:11px"></i> Competências Técnicas</div>
                     <div v-if="viewCand.analysis.candidateAnalysis&&viewCand.analysis.candidateAnalysis.hardSkills&&viewCand.analysis.candidateAnalysis.hardSkills.length" style="display:flex;flex-wrap:wrap;gap:4px">
                       <span v-for="s in viewCand.analysis.candidateAnalysis.hardSkills" :key="s" style="background:#EFF6FF;color:#1D4ED8;font-size:10px;font-weight:500;padding:2px 8px;border-radius:5px">{{s}}</span>
                     </div>
-                    <div v-else style="font-size:11px;color:#94A3B8">—</div>
+                    <div v-else style="font-size:11px;color:#94A3B8">-</div>
                   </div>
                   <div style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:10px 12px">
                     <div style="font-size:9px;font-weight:700;color:#7C3AED;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px;display:flex;align-items:center;gap:4px"><i class="ti ti-users" style="font-size:11px"></i> Perfil Comportamental</div>
                     <div v-if="viewCand.analysis.candidateAnalysis&&viewCand.analysis.candidateAnalysis.softSkills&&viewCand.analysis.candidateAnalysis.softSkills.length" style="display:flex;flex-wrap:wrap;gap:4px">
                       <span v-for="s in viewCand.analysis.candidateAnalysis.softSkills" :key="s" style="background:#F5F3FF;color:#6D28D9;font-size:10px;font-weight:500;padding:2px 8px;border-radius:5px">{{s}}</span>
                     </div>
-                    <div v-else style="font-size:11px;color:#94A3B8">—</div>
+                    <div v-else style="font-size:11px;color:#94A3B8">-</div>
                   </div>
                 </div>
 
-                <!-- ⑤ Matched vs Missing -->
+                
                 <div v-if="viewCand.analysis.comparison" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
                   <div v-if="viewCand.analysis.comparison.matched&&viewCand.analysis.comparison.matched.length" style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:10px 12px">
                     <div style="font-size:9px;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px;display:flex;align-items:center;gap:4px"><i class="ti ti-circle-check" style="font-size:11px"></i> Pontos Fortes</div>
                     <div v-for="m in viewCand.analysis.comparison.matched.slice(0,5)" :key="m" style="display:flex;gap:6px;margin-bottom:4px;align-items:baseline">
-                      <span style="color:#16A34A;font-size:10px;flex-shrink:0">✓</span>
+                      <span style="color:#16A34A;font-size:10px;flex-shrink:0"></span>
                       <span style="font-size:10.5px;color:#166534;line-height:1.45">{{m}}</span>
                     </div>
                   </div>
                   <div v-if="viewCand.analysis.comparison.missing&&viewCand.analysis.comparison.missing.length" style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:10px;padding:10px 12px">
                     <div style="font-size:9px;font-weight:700;color:#C2410C;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px;display:flex;align-items:center;gap:4px"><i class="ti ti-alert-triangle" style="font-size:11px"></i> Pontos de Atenção</div>
                     <div v-for="m in viewCand.analysis.comparison.missing.slice(0,5)" :key="m" style="display:flex;gap:6px;margin-bottom:4px;align-items:baseline">
-                      <span style="color:#EA580C;font-size:10px;flex-shrink:0">⚠</span>
+                      <span style="color:#EA580C;font-size:10px;flex-shrink:0">!</span>
                       <span style="font-size:10.5px;color:#92400E;line-height:1.45">{{m}}</span>
                     </div>
                   </div>
                 </div>
 
-                <!-- ⑥ Justificativa -->
+                
                 <div v-if="viewCand.analysis.executiveSummary&&viewCand.analysis.executiveSummary.reasoning" style="background:#F8FAFC;border:1px solid #E5E7EB;border-radius:10px;padding:10px 12px">
                   <div style="font-size:9px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;display:flex;align-items:center;gap:4px"><i class="ti ti-notes" style="font-size:11px"></i> Justificativa da Recomendação</div>
                   <p style="font-size:11.5px;color:#334155;line-height:1.65;margin:0">{{viewCand.analysis.executiveSummary.reasoning}}</p>
                 </div>
 
-                <!-- Edit button -->
+                
                 <div style="margin-top:10px;padding-top:10px;border-top:1px solid #F1F5F9">
                   <button v-if="!editAnaMode" @click="startEditAnalysis(viewCand)" style="background:none;border:1px solid #E5E7EB;border-radius:7px;padding:5px 12px;font-size:11.5px;color:#64748B;cursor:pointer;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px"><i class="ti ti-edit" style="font-size:13px"></i> Editar análise</button>
                 </div>
 
               </div>
 
-              <!-- EDIT MODE -->
+              
               <div v-if="detTab==='ai'&&viewCand.analysis&&editAnaMode" style="display:flex;flex-direction:column;gap:8px">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
                   <div style="font-size:11px;font-weight:700;color:#2563EB;display:flex;align-items:center;gap:5px"><i class="ti ti-edit" style="font-size:13px"></i> Editando análise</div>
@@ -1181,7 +1181,7 @@ function rsDoLogin(){
                   <button @click="cancelEditAnalysis()" style="background:none;border:1px solid #E5E7EB;border-radius:7px;padding:8px 14px;font-size:12px;color:#64748B;cursor:pointer;font-family:Inter,sans-serif">Cancelar</button>
                 </div>
               </div>
-              <!-- Interview Tab -->
+              
               <div v-if="detTab==='interview'">
                 <div style="margin-bottom:12px">
                   <p style="font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Data da entrevista</p>
@@ -1215,9 +1215,9 @@ function rsDoLogin(){
                     <div>
                       <div style="font-size:9.5px;font-weight:700;color:#16A34A;text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">Pontos positivos</div>
                       <div v-for="(p,i) in getSummary(viewCand.id).pontosPositivos||[]" :key="i" style="display:flex;gap:6px;font-size:12px;margin-bottom:4px;align-items:baseline">
-                        <span v-if="!isEditing(viewCand.id,'pontosPositivos')" style="color:#16A34A">✓</span><span v-if="!isEditing(viewCand.id,'pontosPositivos')">{{p}}</span>
+                        <span v-if="!isEditing(viewCand.id,'pontosPositivos')" style="color:#16A34A"></span><span v-if="!isEditing(viewCand.id,'pontosPositivos')">{{p}}</span>
                       </div>
-                      <button v-if="!isEditing(viewCand.id,'pontosPositivos')" @click="startEdit(viewCand.id,'pontosPositivos',getSummary(viewCand.id).pontosPositivos)" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:#16A34A;padding:0;font-family:Inter,sans-serif;margin-top:2px">✏ editar</button>
+                      <button v-if="!isEditing(viewCand.id,'pontosPositivos')" @click="startEdit(viewCand.id,'pontosPositivos',getSummary(viewCand.id).pontosPositivos)" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:#16A34A;padding:0;font-family:Inter,sans-serif;margin-top:2px"> editar</button>
                       <div v-if="isEditing(viewCand.id,'pontosPositivos')">
                         <textarea v-model="editFieldVal" rows="4" placeholder="Um ponto por linha" style="font-size:12px;border:1px solid #6366F1;border-radius:4px;padding:6px;resize:vertical;background:#fff;margin-bottom:4px"></textarea>
                         <div style="display:flex;gap:5px"><button @click="saveEdit(viewCand.id,'pontosPositivos')" style="background:#2563EB;color:#fff;border:none;border-radius:4px;padding:3px 8px;font-size:11px;cursor:pointer;font-family:Inter,sans-serif">Salvar</button><button @click="cancelEdit()" style="background:none;border:1px solid #E5E7EB;border-radius:4px;padding:3px 7px;font-size:11px;cursor:pointer;color:#64748B;font-family:Inter,sans-serif">Cancelar</button></div>
@@ -1226,9 +1226,9 @@ function rsDoLogin(){
                     <div>
                       <div style="font-size:9.5px;font-weight:700;color:#EA580C;text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">Pontos de atenção</div>
                       <div v-for="(p,i) in getSummary(viewCand.id).pontosAtencao||[]" :key="i" style="display:flex;gap:6px;font-size:12px;margin-bottom:4px;align-items:baseline">
-                        <span v-if="!isEditing(viewCand.id,'pontosAtencao')" style="color:#EA580C">⚠</span><span v-if="!isEditing(viewCand.id,'pontosAtencao')">{{p}}</span>
+                        <span v-if="!isEditing(viewCand.id,'pontosAtencao')" style="color:#EA580C">!</span><span v-if="!isEditing(viewCand.id,'pontosAtencao')">{{p}}</span>
                       </div>
-                      <button v-if="!isEditing(viewCand.id,'pontosAtencao')" @click="startEdit(viewCand.id,'pontosAtencao',getSummary(viewCand.id).pontosAtencao)" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:#EA580C;padding:0;font-family:Inter,sans-serif;margin-top:2px">✏ editar</button>
+                      <button v-if="!isEditing(viewCand.id,'pontosAtencao')" @click="startEdit(viewCand.id,'pontosAtencao',getSummary(viewCand.id).pontosAtencao)" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:#EA580C;padding:0;font-family:Inter,sans-serif;margin-top:2px"> editar</button>
                       <div v-if="isEditing(viewCand.id,'pontosAtencao')">
                         <textarea v-model="editFieldVal" rows="4" placeholder="Um ponto por linha" style="font-size:12px;border:1px solid #6366F1;border-radius:4px;padding:6px;resize:vertical;background:#fff;margin-bottom:4px"></textarea>
                         <div style="display:flex;gap:5px"><button @click="saveEdit(viewCand.id,'pontosAtencao')" style="background:#2563EB;color:#fff;border:none;border-radius:4px;padding:3px 8px;font-size:11px;cursor:pointer;font-family:Inter,sans-serif">Salvar</button><button @click="cancelEdit()" style="background:none;border:1px solid #E5E7EB;border-radius:4px;padding:3px 7px;font-size:11px;cursor:pointer;color:#64748B;font-family:Inter,sans-serif">Cancelar</button></div>
@@ -1241,7 +1241,7 @@ function rsDoLogin(){
                   </div>
                 </div>
               </div>
-              <!-- Histórico Tab -->
+              
               <div v-if="detTab==='hist'">
                 <div v-for="(h,i) in viewCand.statusHistory||[]" :key="i" style="display:flex;gap:12px;margin-bottom:0">
                   <div style="display:flex;flex-direction:column;align-items:center;width:20px">
@@ -1266,9 +1266,9 @@ function rsDoLogin(){
                   </div>
                 </div>
               </div>
-              <!-- Observações Tab -->
+              
               <div v-if="detTab==='notes'">
-                <div style="font-size:9.5px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px">Observações internas · RH</div>
+                <div style="font-size:9.5px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px">Observações internas . RH</div>
                 <div v-if="getNote(viewCand.id)" style="border-left:3px solid #2563EB;background:#F8FAFC;border-radius:0 8px 8px 0;padding:11px 13px;margin-bottom:12px">
                   <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
                     <div style="width:22px;height:22px;border-radius:50%;background:#2563EB;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff">RH</div>
@@ -1290,7 +1290,7 @@ function rsDoLogin(){
         </div>
       </div>
 
-      <!-- ━━ ANALISAR ━━ -->
+      
       <div v-else-if="nav==='analyze'">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
           <button @click="goTo('candidates')" style="background:none;border:none;cursor:pointer;color:#2563EB;font-size:13px;font-weight:500;display:flex;align-items:center;gap:5px;font-family:Inter,sans-serif"><i class="ti ti-arrow-left"></i> Candidatos</button>
@@ -1328,10 +1328,10 @@ function rsDoLogin(){
           </button>
         </div>
         <div v-if="latestResult" style="max-width:640px;margin-top:16px">
-          <!-- RESULT CARD PREMIUM -->
+          
           <div style="background:#fff;border:1px solid #E5E7EB;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(15,23,42,.08)">
 
-            <!-- Gradient header -->
+            
             <div style="background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 50%,#2563EB 100%);padding:20px 24px;display:flex;align-items:center;justify-content:space-between">
               <div style="display:flex;align-items:center;gap:12px">
                 <div :style="{width:'46px',height:'46px',borderRadius:'50%',background:'rgba(255,255,255,.2)',border:'2px solid rgba(255,255,255,.3)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'16px',fontWeight:800,color:'#fff',flexShrink:0}">{{initials(latestResult.name)}}</div>
@@ -1340,7 +1340,7 @@ function rsDoLogin(){
                   <div style="font-size:11px;color:rgba(255,255,255,.7);margin-top:2px">{{latestResult.jobTitle}}</div>
                 </div>
               </div>
-              <!-- Score ring -->
+              
               <div style="text-align:center">
                 <svg width="60" height="60" viewBox="0 0 60 60">
                   <circle cx="30" cy="30" r="24" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="5"/>
@@ -1353,7 +1353,7 @@ function rsDoLogin(){
               </div>
             </div>
 
-            <!-- Recommendation banner -->
+            
             <div :style="{background:recMeta(latestResult.analysis&&latestResult.analysis.recommendation).bg,padding:'10px 20px',display:'flex',alignItems:'center',gap:'10px',borderBottom:'1px solid #E5E7EB'}">
               <i class="ti ti-sparkles" :style="{fontSize:'16px',color:recMeta(latestResult.analysis&&latestResult.analysis.recommendation).color}"></i>
               <div>
@@ -1365,13 +1365,13 @@ function rsDoLogin(){
               </div>
             </div>
 
-            <!-- Resumo executivo -->
+            
             <div v-if="latestResult.analysis&&latestResult.analysis.executiveSummary&&latestResult.analysis.executiveSummary.strengths" style="padding:14px 20px;background:#F8FAFF;border-bottom:1px solid #E5E7EB">
               <div style="font-size:9px;font-weight:700;color:#2563EB;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;display:flex;align-items:center;gap:5px"><i class="ti ti-file-description" style="font-size:12px"></i> Resumo Executivo</div>
               <p style="font-size:12px;color:#0F172A;line-height:1.7">{{latestResult.analysis.executiveSummary.strengths}}</p>
             </div>
 
-            <!-- Score dimensions -->
+            
             <div v-if="latestResult.analysis&&latestResult.analysis.score" style="padding:14px 20px;border-bottom:1px solid #E5E7EB">
               <div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Avaliação por dimensão</div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
@@ -1387,7 +1387,7 @@ function rsDoLogin(){
               </div>
             </div>
 
-            <!-- CTA -->
+            
             <div style="padding:14px 20px;display:flex;gap:8px">
               <button @click="viewCand=latestResult;goTo('candidates')" style="flex:1;background:#2563EB;color:#fff;border:none;border-radius:9px;padding:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;display:flex;align-items:center;justify-content:center;gap:7px"><i class="ti ti-user-circle"></i> Ver perfil completo</button>
               <button v-if="latestResult.analysis" @click="downloadAnalysisPDF(latestResult)" style="background:none;border:1px solid #E5E7EB;border-radius:9px;padding:10px 14px;font-size:12px;cursor:pointer;color:#64748B;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px"><i class="ti ti-download"></i> PDF</button>
@@ -1396,7 +1396,7 @@ function rsDoLogin(){
         </div>
       </div>
 
-      <!-- ━━ PIPELINE ━━ -->
+      
       <div v-else-if="nav==='pipeline'">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
           <div><h1 style="font-size:21px;font-weight:700;color:#0F172A;margin-bottom:3px">Pipeline</h1><p style="font-size:13px;color:#64748B">Fluxo de candidatos por etapa</p></div>
@@ -1405,17 +1405,17 @@ function rsDoLogin(){
             <button v-for="j in jobs" :key="j.id" @click="pipFilter=j.id" :style="{padding:'6px 12px',border:'1px solid',borderColor:pipFilter===j.id?'#2563EB':'#E5E7EB',borderRadius:'8px',fontSize:'12px',cursor:'pointer',background:pipFilter===j.id?'#2563EB':'none',color:pipFilter===j.id?'#fff':'#64748B',fontFamily:'Inter,sans-serif'}">{{j.title}}</button>
           </div>
         </div>
-        <!-- Pipeline stats bar -->
+        
         <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:14px">
           <div v-for="st in STAGES" :key="st.key+'stat'" :style="{background:'#fff',border:'1px solid #E5E7EB',borderRadius:'10px',padding:'10px 12px',borderTop:'3px solid '+st.col,textAlign:'center',boxShadow:'0 1px 3px rgba(15,23,42,.04)'}">
             <div :style="{fontSize:'20px',fontWeight:800,color:st.col,lineHeight:1}">{{filtCands.filter(c=>c.status===st.key).length}}</div>
             <div style="font-size:9px;color:#94A3B8;margin-top:3px;line-height:1.3">{{st.label}}</div>
           </div>
         </div>
-        <!-- Stage rows -->
+        
         <div style="display:flex;flex-direction:column;gap:8px">
           <div v-for="st in STAGES" :key="st.key" v-show="filtCands.filter(c=>c.status===st.key).length>0" style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.04)">
-            <!-- Stage header -->
+            
             <div :style="{background:st.bg,padding:'10px 16px',display:'flex',alignItems:'center',justifyContent:'space-between',borderBottom:'1px solid #E5E7EB'}">
               <div style="display:flex;align-items:center;gap:8px">
                 <div :style="{width:'10px',height:'10px',borderRadius:'50%',background:st.col,flexShrink:0,boxShadow:'0 0 0 3px '+st.col+'33'}"></div>
@@ -1429,15 +1429,15 @@ function rsDoLogin(){
                 <span :style="{background:st.col,color:'#fff',borderRadius:'99px',minWidth:'22px',height:'22px',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'11px',fontWeight:700,padding:'0 7px'}">{{filtCands.filter(c=>c.status===st.key).length}}</span>
               </div>
             </div>
-            <!-- Cards row -->
+            
             <div style="padding:10px 12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px">
               <div v-for="c in filtCands.filter(x=>x.status===st.key)" :key="c.id"
                 @click="viewCand=c;detTab='ai';goTo('candidates')"
                 style="background:#F8FAFC;border:1px solid #E5E7EB;border-radius:10px;padding:11px 13px;cursor:pointer;transition:all .15s;position:relative;overflow:hidden">
-                <!-- Score accent left border -->
+                
                 <div :style="{position:'absolute',top:0,left:0,bottom:0,width:'3px',background:scoreColor(c.analysis&&c.analysis.score&&c.analysis.score.total||0)}"></div>
                 <div style="padding-left:6px">
-                  <!-- Name + Score -->
+                  
                   <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:6px;margin-bottom:6px">
                     <div style="flex:1;min-width:0">
                       <div style="font-weight:700;font-size:12.5px;color:#0F172A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:1px">{{c.name}}</div>
@@ -1445,7 +1445,7 @@ function rsDoLogin(){
                     </div>
                     <div :style="{flexShrink:0,width:'32px',height:'32px',borderRadius:'50%',background:'#fff',border:'2px solid '+scoreColor(c.analysis&&c.analysis.score&&c.analysis.score.total||0),display:'flex',alignItems:'center',justifyContent:'center',fontSize:'11px',fontWeight:800,color:scoreColor(c.analysis&&c.analysis.score&&c.analysis.score.total||0)}">{{c.analysis&&c.analysis.score?c.analysis.score.total:'-'}}</div>
                   </div>
-                  <!-- Rec + fit -->
+                  
                   <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap">
                     <span v-if="c.analysis&&c.analysis.classification" :style="{fontSize:'9.5px',fontWeight:600,padding:'2px 7px',borderRadius:'99px',background:scoreBgCol(c.analysis&&c.analysis.score&&c.analysis.score.total||0),color:scoreColor(c.analysis&&c.analysis.score&&c.analysis.score.total||0)}">{{c.analysis.classification}}</span>
                     <span v-if="c.analysis&&c.analysis.culturalFit" style="font-size:9.5px;color:#64748B;display:flex;align-items:center;gap:2px">
@@ -1457,7 +1457,7 @@ function rsDoLogin(){
               </div>
             </div>
           </div>
-          <!-- Empty state -->
+          
           <div v-if="filtCands.length===0" style="text-align:center;padding:48px 20px;background:#fff;border:1px solid #E5E7EB;border-radius:12px">
             <i class="ti ti-git-merge" style="font-size:32px;color:#CBD5E1;display:block;margin-bottom:10px"></i>
             <div style="font-size:14px;font-weight:600;color:#94A3B8">Nenhum candidato no pipeline</div>
@@ -1466,13 +1466,13 @@ function rsDoLogin(){
         </div>
       </div>
 
-      <!-- ━━ BANCO DE TALENTOS ━━ -->
+      
       <div v-else-if="nav==='banco'">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
           <div><h1 style="font-size:21px;font-weight:700;color:#0F172A;margin-bottom:3px">Banco de talentos</h1><p style="font-size:13px;color:#64748B">{{candidates.filter(c=>c.status==='banco').length}} candidatos disponíveis</p></div>
           <button @click="goTo('analyze')" style="background:#2563EB;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;font-family:Inter,sans-serif"><i class="ti ti-search"></i> Buscar candidatos</button>
         </div>
-        <!-- KPIs Premium -->
+        
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px">
           <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:16px;position:relative;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.05)">
             <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#2563EB;border-radius:12px 12px 0 0"></div>
@@ -1499,7 +1499,7 @@ function rsDoLogin(){
               <div style="width:28px;height:28px;border-radius:7px;background:#F0FDF4;display:flex;align-items:center;justify-content:center"><i class="ti ti-circle-check" style="font-size:14px;color:#16A34A"></i></div>
             </div>
             <div style="font-size:28px;font-weight:800;color:#16A34A;letter-spacing:-.5px;margin-bottom:3px">{{candidates.filter(c=>c.status==='banco'&&c.score>=80).length}}</div>
-            <div style="font-size:11px;color:#64748B">Score ≥ 80 pts</div>
+            <div style="font-size:11px;color:#64748B">Score >= 80 pts</div>
           </div>
           <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:16px;position:relative;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.05)">
             <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#EA580C;border-radius:12px 12px 0 0"></div>
@@ -1511,7 +1511,7 @@ function rsDoLogin(){
             <div style="font-size:11px;color:#64748B">Perfis distintos</div>
           </div>
         </div>
-        <!-- Grid CRM -->
+        
         <div v-if="!candidates.filter(c=>c.status==='banco').length" style="text-align:center;padding:56px 20px;background:#fff;border:1px solid #E5E7EB;border-radius:14px">
           <i class="ti ti-database" style="font-size:36px;color:#CBD5E1;display:block;margin-bottom:12px"></i>
           <div style="font-size:15px;font-weight:700;color:#94A3B8;margin-bottom:4px">Banco de talentos vazio</div>
@@ -1521,17 +1521,17 @@ function rsDoLogin(){
           <div v-for="c in candidates.filter(c=>c.status==='banco'&&inPeriod(c.submittedAt)&&(insightFilter==='banco_70'?c.analysis&&c.analysis.score&&c.analysis.score.total>=70:true))" :key="c.id"
             @click="viewCand=c;detTab='ai';goTo('candidates')"
             style="background:#fff;border:1px solid #E5E7EB;border-radius:14px;cursor:pointer;overflow:hidden;box-shadow:0 1px 4px rgba(15,23,42,.05);transition:all .18s">
-            <!-- Card header -->
+            
             <div :style="{background:'linear-gradient(135deg,#0F172A,'+scoreColor(c.analysis&&c.analysis.score&&c.analysis.score.total||0)+'33)',padding:'16px 16px 12px',position:'relative'}">
               <div style="display:flex;align-items:flex-start;gap:11px">
-                <!-- Avatar -->
+                
                 <div :style="{width:'44px',height:'44px',borderRadius:'50%',background:'rgba(255,255,255,.15)',border:'2px solid rgba(255,255,255,.25)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'16px',fontWeight:800,color:'#fff',flexShrink:0}">{{initials(c.name)}}</div>
                 <div style="flex:1;min-width:0">
                   <div style="font-size:13px;font-weight:800;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{c.name}}</div>
                   <div style="font-size:10.5px;color:rgba(255,255,255,.7);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{c.jobTitle}}</div>
                   <div v-if="c.email" style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{c.email}}</div>
                 </div>
-                <!-- Score ring -->
+                
                 <div style="flex-shrink:0;text-align:center">
                   <svg width="46" height="46" viewBox="0 0 46 46">
                     <circle cx="23" cy="23" r="19" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="4"/>
@@ -1543,16 +1543,16 @@ function rsDoLogin(){
                 </div>
               </div>
             </div>
-            <!-- Card body -->
+            
             <div style="padding:12px 16px">
-              <!-- Classification + fit -->
+              
               <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px;flex-wrap:wrap">
                 <span v-if="c.analysis&&c.analysis.classification" :style="{fontSize:'10px',fontWeight:700,padding:'3px 8px',borderRadius:'99px',background:scoreBgCol(c.analysis&&c.analysis.score&&c.analysis.score.total||0),color:scoreColor(c.analysis&&c.analysis.score&&c.analysis.score.total||0)}">{{c.analysis.classification}}</span>
                 <span v-if="c.analysis&&c.analysis.culturalFit" :style="{fontSize:'10px',fontWeight:600,padding:'3px 8px',borderRadius:'99px',background:c.analysis.culturalFit.level==='Alto fit cultural'?'#F0FDF4':'#FFF7ED',color:c.analysis.culturalFit.level==='Alto fit cultural'?'#16A34A':'#EA580C'}">
                   <i class="ti ti-heart" style="font-size:9px"></i> {{c.analysis.culturalFit.level.replace(' fit cultural',' Fit')}}
                 </span>
               </div>
-              <!-- Hard skills top 4 -->
+              
               <div v-if="c.analysis&&c.analysis.candidateAnalysis&&c.analysis.candidateAnalysis.hardSkills&&c.analysis.candidateAnalysis.hardSkills.length" style="margin-bottom:10px">
                 <div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px">Competências</div>
                 <div style="display:flex;flex-wrap:wrap;gap:4px">
@@ -1560,7 +1560,7 @@ function rsDoLogin(){
                   <span v-if="c.analysis.candidateAnalysis.hardSkills.length>4" style="font-size:10px;padding:2px 7px;border-radius:5px;background:#F1F5F9;color:#64748B">+{{c.analysis.candidateAnalysis.hardSkills.length-4}}</span>
                 </div>
               </div>
-              <!-- Score mini bars -->
+              
               <div v-if="c.analysis&&c.analysis.score" style="display:grid;grid-template-columns:1fr 1fr;gap:5px 14px">
                 <div v-for="d in [{l:'Hard Skills',v:c.analysis.score.hardSkills||0,m:50},{l:'Experiencia',v:c.analysis.score.experience||0,m:25}]" :key="d.l">
                   <div style="display:flex;justify-content:space-between;margin-bottom:2px">
@@ -1573,7 +1573,7 @@ function rsDoLogin(){
                 </div>
               </div>
             </div>
-            <!-- Footer -->
+            
             <div style="padding:8px 16px;border-top:1px solid #F1F5F9;display:flex;align-items:center;justify-content:space-between">
               <span style="font-size:10px;color:#94A3B8"><i class="ti ti-calendar" style="font-size:10px"></i> {{c.submittedAt&&c.submittedAt.split(',')[0]||''}}</span>
               <span style="font-size:10px;color:#2563EB;font-weight:600;display:flex;align-items:center;gap:3px">Ver perfil <i class="ti ti-arrow-right" style="font-size:10px"></i></span>
@@ -1581,7 +1581,7 @@ function rsDoLogin(){
           </div>
         </div>
 
-        <!-- ORIGEM DOS CANDIDATOS -->
+        
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px">
           <div style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:14px 16px">
             <div style="font-size:11.5px;font-weight:700;color:#0F172A;margin-bottom:14px">Origem dos candidatos</div>
