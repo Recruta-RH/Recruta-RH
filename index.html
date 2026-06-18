@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval' 'unsafe-inline' https: data: blob:;">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -313,7 +314,7 @@ function rsDoLogin(){
       <p style="font-weight:700;font-size:16px">Compartilhamento em tempo real</p>
       <button @click="showSyncModal=false" style="background:none;border:none;cursor:pointer;font-size:22px;color:#64748B">&#10005;</button>
     </div>
-    <p style="font-size:13px;color:#64748B;margin-bottom:20px;line-height:1.6">Usa o <strong>JSONBin.io</strong> (gratuito) para sincronizar dados entre todos os usuários. <a href="https://jsonbin.io" target="_blank" style="color:#2563EB">Crie sua conta</a>, depois vá em Account > API Keys e copie a <strong>Master Key</strong>.</p>
+    <p style="font-size:13px;color:#64748B;margin-bottom:20px;line-height:1.6">Usa o <strong>JSONBin.io</strong> (gratuito) para sincronizar dados entre todos os usuarios. <a href="https://jsonbin.io" target="_blank" style="color:#2563EB">Crie sua conta</a>, depois va em Account > API Keys e copie a <strong>Master Key</strong>.</p>
     <div v-if="!jbBin">
       <label style="font-size:12px;color:#64748B;display:block;margin-bottom:12px">Master Key<input v-model="jbKeyInput" type="password" placeholder="$2b$..." style="display:block;margin-top:4px"/></label>
       <button @click="saveSyncConfig" :disabled="jbCreating||!jbKeyInput.trim()" :style="{width:'100%',background:jbCreating?'#F1F5F9':'#2563EB',color:jbCreating?'#64748B':'#fff',border:'none',borderRadius:'8px',padding:'11px',fontSize:'14px',fontWeight:700,cursor:jbCreating?'not-allowed':'pointer'}">{{jbCreating?'Criando...':'Ativar compartilhamento'}}</button>
@@ -403,7 +404,7 @@ function rsDoLogin(){
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
             <div>
               <label style="font-size:11px;font-weight:600;color:#64748B;display:block;margin-bottom:4px">Nome completo *</label>
-              <input v-model="mf.name" placeholder="Ex: João Silva" style="font-size:12.5px"/>
+              <input v-model="mf.name" placeholder="Ex: Joao Silva" style="font-size:12.5px"/>
             </div>
             <div>
               <label style="font-size:11px;font-weight:600;color:#64748B;display:block;margin-bottom:4px">E-mail</label>
@@ -417,7 +418,7 @@ function rsDoLogin(){
               </select>
             </div>
             <div>
-              <label style="font-size:11px;font-weight:600;color:#64748B;display:block;margin-bottom:4px">Origem do currículo *</label>
+              <label style="font-size:11px;font-weight:600;color:#64748B;display:block;margin-bottom:4px">Origem do curriculo *</label>
               <select v-model="mf.origem" style="font-size:12.5px">
                 <option value="">Selecione a origem</option>
                 <option v-for="o in ORIGENS" :key="o.key" :value="o.key">{{o.label}}</option>
@@ -425,7 +426,7 @@ function rsDoLogin(){
             </div>
           </div>
           <div style="margin-bottom:10px">
-            <label style="font-size:11px;font-weight:600;color:#64748B;display:block;margin-bottom:4px">Observação inicial</label>
+            <label style="font-size:11px;font-weight:600;color:#64748B;display:block;margin-bottom:4px">Observacao inicial</label>
             <textarea v-model="mf.note" placeholder="Ex: Indicado pelo gestor, chegou pelo LinkedIn..." rows="2" style="font-size:12.5px;min-height:60px"></textarea>
           </div>
           <div v-if="mfError" style="font-size:12px;color:#DC2626;margin-bottom:10px">{{mfError}}</div>
@@ -496,22 +497,22 @@ function rsDoLogin(){
             </div>
             <div style="background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:14px 18px;text-align:center">
               <div style="font-size:22px;font-weight:800;color:#4ADE80">{{metrics.contratados}}</div>
-              <div style="font-size:10px;color:rgba(255,255,255,.8);margin-top:2px">Contratações</div>
+              <div style="font-size:10px;color:rgba(255,255,255,.8);margin-top:2px">Contratacoes</div>
             </div>
           </div>
           
           <div style="max-width:520px">
             <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">{{greeting()}}, {{currentUser ? currentUser.firstName : ""}}!</div>
             <h1 style="font-size:28px;font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:-.4px">{{greeting()}}, {{currentUser ? currentUser.firstName : "RH"}}!</h1>
-            <p style="font-size:14px;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:20px">Você tem <strong style="color:#fff">{{candidates.filter(c=>c.status==='aguardando_lider').length}} candidato(s)</strong> aguardando aprovação e <strong style="color:#fff">{{jobs.filter(j=>j.status==='aberta'&&bizDaysSince(j.openDate)>8).length}} vaga(s)</strong> próximas do vencimento do SLA.</p>
+            <p style="font-size:14px;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:20px">Voce tem <strong style="color:#fff">{{candidates.filter(c=>c.status==='aguardando_lider').length}} candidato(s)</strong> aguardando aprovacao e <strong style="color:#fff">{{jobs.filter(j=>j.status==='aberta'&&bizDaysSince(j.openDate)>8).length}} vaga(s)</strong> proximas do vencimento do SLA.</p>
             <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
               <button @click="showJobModal=true" style="background:#fff;color:#1E3A8A;border:none;border-radius:9px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:Inter,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.15)"><i class="ti ti-plus"></i> Nova vaga</button>
-              <button @click="goTo('analyze')" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:9px;padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:Inter,sans-serif"><i class="ti ti-file-search"></i> Analisar Currículo</button>
+              <button @click="goTo('analyze')" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:9px;padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:Inter,sans-serif"><i class="ti ti-file-search"></i> Analisar Curriculo</button>
               <button @click="showSyncModal=true" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2);border-radius:9px;padding:9px 14px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:Inter,sans-serif"><i class="ti ti-refresh"></i></button>
               
               <div style="position:relative">
                 <select v-model="filterMonth" style="appearance:none;-webkit-appearance:none;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:9px;padding:8px 32px 8px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;outline:none">
-                  <option value="" style="background:#1E3A8A;color:#fff">Todos os períodos</option>
+                  <option value="" style="background:#1E3A8A;color:#fff">Todos os periodos</option>
                   <option v-for="m in availableMonths" :key="m.value" :value="m.value" style="background:#1E3A8A;color:#fff">{{m.label}}</option>
                 </select>
                 <i class="ti ti-chevron-down" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:12px;color:rgba(255,255,255,.7);pointer-events:none"></i>
@@ -568,7 +569,7 @@ function rsDoLogin(){
                   <span style="font-size:13px;font-weight:700;color:#16A34A">{{slaStats&&slaStats.on||0}}</span>
                 </div>
                 <div style="display:flex;align-items:center;justify-content:space-between">
-                  <div style="display:flex;align-items:center;gap:5px"><div style="width:8px;height:8px;border-radius:50%;background:#EA580C"></div><span style="font-size:11px;color:#64748B">Próximo</span></div>
+                  <div style="display:flex;align-items:center;gap:5px"><div style="width:8px;height:8px;border-radius:50%;background:#EA580C"></div><span style="font-size:11px;color:#64748B">Proximo</span></div>
                   <span style="font-size:13px;font-weight:700;color:#EA580C">{{slaStats&&slaStats.near||0}}</span>
                 </div>
                 <div style="display:flex;align-items:center;justify-content:space-between">
@@ -605,8 +606,8 @@ function rsDoLogin(){
               <div v-if="candidates.filter(c=>c.status==='aguardando_lider').length>0" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #F8FAFC;cursor:pointer;transition:background .15s" @click="goTo('pipeline')">
                 <div style="width:34px;height:34px;border-radius:9px;background:#FEF2F2;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-clock-exclamation" style="font-size:16px;color:#DC2626"></i></div>
                 <div style="flex:1">
-                  <div style="font-size:12px;font-weight:500;color:#0F172A;line-height:1.4">{{candidates.filter(c=>c.status==='aguardando_lider').length}} aguardando aprovação do líder</div>
-                  <div style="font-size:10.5px;color:#DC2626;margin-top:1px">Ação necessária</div>
+                  <div style="font-size:12px;font-weight:500;color:#0F172A;line-height:1.4">{{candidates.filter(c=>c.status==='aguardando_lider').length}} aguardando aprovacao do lider</div>
+                  <div style="font-size:10.5px;color:#DC2626;margin-top:1px">Acao necessaria</div>
                 </div>
                 <i class="ti ti-chevron-right" style="font-size:14px;color:#CBD5E1"></i>
               </div>
@@ -614,7 +615,7 @@ function rsDoLogin(){
                 <div style="width:34px;height:34px;border-radius:9px;background:#F1F5F9;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-database" style="font-size:16px;color:#64748B"></i></div>
                 <div style="flex:1">
                   <div style="font-size:12px;font-weight:500;color:#0F172A;line-height:1.4">{{candidates.filter(c=>c.status==='banco').length}} candidato(s) no banco de talentos</div>
-                  <div style="font-size:10.5px;color:#64748B;margin-top:1px">Disponíveis para reaproveitamento</div>
+                  <div style="font-size:10.5px;color:#64748B;margin-top:1px">Disponiveis para reaproveitamento</div>
                 </div>
                 <i class="ti ti-chevron-right" style="font-size:14px;color:#CBD5E1"></i>
               </div>
@@ -640,7 +641,7 @@ function rsDoLogin(){
                 <div style="width:34px;height:34px;border-radius:9px;background:#DCFCE7;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-send" style="font-size:15px;color:#16A34A"></i></div>
                 <div style="flex:1">
                   <div style="font-size:12px;font-weight:500;color:#0F172A;line-height:1.4">{{candidates.filter(c=>c.status==='proposta').length}} candidato(s) com proposta enviada</div>
-                  <div style="font-size:10.5px;color:#16A34A;margin-top:1px">Próximos de fechar</div>
+                  <div style="font-size:10.5px;color:#16A34A;margin-top:1px">Proximos de fechar</div>
                 </div>
                 <i class="ti ti-chevron-right" style="font-size:14px;color:#CBD5E1"></i>
               </div>
@@ -658,19 +659,19 @@ function rsDoLogin(){
               <div style="padding:8px 14px">
                 <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F8FAFC">
                   <div style="width:30px;height:30px;border-radius:8px;background:#EFF6FF;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-star" style="font-size:14px;color:#2563EB"></i></div>
-                  <div><div style="font-size:10px;color:#94A3B8">Score médio</div><div style="font-size:13px;font-weight:700;color:#0F172A">{{metrics.avgScore}} pts</div></div>
+                  <div><div style="font-size:10px;color:#94A3B8">Score medio</div><div style="font-size:13px;font-weight:700;color:#0F172A">{{metrics.avgScore}} pts</div></div>
                 </div>
                 <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F8FAFC">
                   <div style="width:30px;height:30px;border-radius:8px;background:#FFF7ED;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-clock" style="font-size:14px;color:#EA580C"></i></div>
-                  <div><div style="font-size:10px;color:#94A3B8">Tempo médio de fechamento</div><div style="font-size:13px;font-weight:700;color:#0F172A">{{metrics.avgTTF?metrics.avgTTF+' dias uteis':'N/D'}}</div></div>
+                  <div><div style="font-size:10px;color:#94A3B8">Tempo medio de fechamento</div><div style="font-size:13px;font-weight:700;color:#0F172A">{{metrics.avgTTF?metrics.avgTTF+' dias uteis':'N/D'}}</div></div>
                 </div>
                 <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F8FAFC">
                   <div style="width:30px;height:30px;border-radius:8px;background:#F0FDF4;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-file-text" style="font-size:14px;color:#16A34A"></i></div>
-                  <div><div style="font-size:10px;color:#94A3B8">Currículos triados</div><div style="font-size:13px;font-weight:700;color:#0F172A">{{metrics.total}}</div></div>
+                  <div><div style="font-size:10px;color:#94A3B8">Curriculos triados</div><div style="font-size:13px;font-weight:700;color:#0F172A">{{metrics.total}}</div></div>
                 </div>
                 <div style="display:flex;align-items:center;gap:10px;padding:8px 0">
                   <div style="width:30px;height:30px;border-radius:8px;background:#F0FDF4;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-trophy" style="font-size:14px;color:#16A34A"></i></div>
-                  <div><div style="font-size:10px;color:#94A3B8">Contratações realizadas</div><div style="font-size:13px;font-weight:700;color:#16A34A">{{metrics.contratados}}</div></div>
+                  <div><div style="font-size:10px;color:#94A3B8">Contratacoes realizadas</div><div style="font-size:13px;font-weight:700;color:#16A34A">{{metrics.contratados}}</div></div>
                 </div>
               </div>
             </div>
@@ -680,7 +681,7 @@ function rsDoLogin(){
                 <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F8FAFC"><span style="font-size:12px;color:#64748B">Vagas abertas</span><span style="font-size:12px;font-weight:600;color:#2563EB">{{metrics.openJobs}}</span></div>
                 <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F8FAFC"><span style="font-size:12px;color:#64748B">Em processo</span><span style="font-size:12px;font-weight:600;color:#0F172A">{{metrics.pipeline}}</span></div>
                 <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F8FAFC"><span style="font-size:12px;color:#64748B">Vagas encerradas</span><span style="font-size:12px;font-weight:600;color:#16A34A">{{metrics.encerradas}}</span></div>
-                <div style="display:flex;justify-content:space-between;padding:6px 0"><span style="font-size:12px;color:#64748B">TTF mínimo / máximo</span><span style="font-size:12px;font-weight:600;color:#64748B">{{metrics.minTTF?metrics.minTTF+'d':'--'}} / {{metrics.maxTTF?metrics.maxTTF+'d':'--'}}</span></div>
+                <div style="display:flex;justify-content:space-between;padding:6px 0"><span style="font-size:12px;color:#64748B">TTF minimo / maximo</span><span style="font-size:12px;font-weight:600;color:#64748B">{{metrics.minTTF?metrics.minTTF+'d':'--'}} / {{metrics.maxTTF?metrics.maxTTF+'d':'--'}}</span></div>
               </div>
             </div>
           </div>
@@ -694,7 +695,7 @@ function rsDoLogin(){
             </div>
             <div>
               <div style="font-size:13px;font-weight:800;color:#fff;letter-spacing:-.2px">Insights Inteligentes</div>
-              <div style="font-size:10px;color:rgba(255,255,255,.6)">Análise em tempo real dos seus processos</div>
+              <div style="font-size:10px;color:rgba(255,255,255,.6)">Analise em tempo real dos seus processos</div>
             </div>
           </div>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
@@ -706,7 +707,7 @@ function rsDoLogin(){
                 <span style="font-size:9px;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.07em">Destaques</span>
               </div>
               <div style="font-size:12px;font-weight:600;color:#fff;margin-bottom:3px">
-                {{candidates.filter(c=>c.analysis&&c.analysis.score&&c.analysis.score.total>=80).length}} candidato(s) com aderência alta
+                {{candidates.filter(c=>c.analysis&&c.analysis.score&&c.analysis.score.total>=80).length}} candidato(s) com aderencia alta
               </div>
               <div style="font-size:10.5px;color:rgba(255,255,255,.65)">Score >= 80 pts . prontos para entrevista</div>
             </div>
@@ -725,7 +726,7 @@ function rsDoLogin(){
                 <span style="font-size:9px;font-weight:700;color:#FB923C;text-transform:uppercase;letter-spacing:.07em">SLA em Risco</span>
               </div>
               <div style="font-size:12px;font-weight:600;color:#fff;margin-bottom:3px">
-                {{jobs.filter(j=>j.status==='aberta'&&bizDaysSince(j.openDate)>=20).length}} vaga(s) próximas do limite
+                {{jobs.filter(j=>j.status==='aberta'&&bizDaysSince(j.openDate)>=20).length}} vaga(s) proximas do limite
               </div>
               <div style="font-size:10.5px;color:rgba(255,255,255,.65)">Acima de 20 dias uteis abertas</div>
             </div>
@@ -745,7 +746,7 @@ function rsDoLogin(){
                 <span style="font-size:9px;font-weight:700;color:#A5B4FC;text-transform:uppercase;letter-spacing:.07em">Reaproveitamento</span>
               </div>
               <div style="font-size:12px;font-weight:600;color:#fff;margin-bottom:3px">
-                {{candidates.filter(c=>c.status==='banco'&&c.analysis&&c.analysis.score&&c.analysis.score.total>=70).length}} talento(s) disponíveis
+                {{candidates.filter(c=>c.status==='banco'&&c.analysis&&c.analysis.score&&c.analysis.score.total>=70).length}} talento(s) disponiveis
               </div>
               <div style="font-size:10.5px;color:rgba(255,255,255,.65)">Score >= 70 . prontos para reaproveitamento</div>
             </div>
@@ -763,7 +764,7 @@ function rsDoLogin(){
           <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1)">
             <div style="text-align:center">
               <div style="font-size:18px;font-weight:800;color:#fff">{{candidates.filter(c=>c.status==='aguardando_lider').length}}</div>
-              <div style="font-size:9.5px;color:rgba(255,255,255,.6);margin-top:2px">Aguard. líder</div>
+              <div style="font-size:9.5px;color:rgba(255,255,255,.6);margin-top:2px">Aguard. lider</div>
             </div>
             <div style="text-align:center">
               <div style="font-size:18px;font-weight:800;color:#4ADE80">{{candidates.filter(c=>c.status==='contratado').length}}</div>
@@ -771,7 +772,7 @@ function rsDoLogin(){
             </div>
             <div style="text-align:center">
               <div style="font-size:18px;font-weight:800;color:#93C5FD">{{candidates.length>0?Math.round(candidates.filter(c=>c.analysis&&c.analysis.score&&c.analysis.score.total>0).reduce((s,c)=>s+(c.analysis.score.total||0),0)/Math.max(candidates.filter(c=>c.analysis&&c.analysis.score&&c.analysis.score.total>0).length,1)):0}}</div>
-              <div style="font-size:9.5px;color:rgba(255,255,255,.6);margin-top:2px">Score médio</div>
+              <div style="font-size:9.5px;color:rgba(255,255,255,.6);margin-top:2px">Score medio</div>
             </div>
             <div style="text-align:center">
               <div style="font-size:18px;font-weight:800;color:#FCD34D">{{jobs.filter(j=>j.status==='aberta').length}}</div>
@@ -797,7 +798,7 @@ function rsDoLogin(){
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
           <div>
             <h1 style="font-size:21px;font-weight:700;color:#0F172A;margin-bottom:3px">Vagas</h1>
-            <p style="font-size:13px;color:#64748B">{{jobs.filter(j=>j.status==='aberta').length}} ativas &middot; {{jobs.filter(j=>j.status==='encerrada').length}} encerradas &middot; {{jobs.filter(j=>isVagaCrit(j)).length}} crítica(s)</p>
+            <p style="font-size:13px;color:#64748B">{{jobs.filter(j=>j.status==='aberta').length}} ativas &middot; {{jobs.filter(j=>j.status==='encerrada').length}} encerradas &middot; {{jobs.filter(j=>isVagaCrit(j)).length}} critica(s)</p>
           </div>
           <button @click="showJobModal=true" style="background:#2563EB;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;font-family:Inter,sans-serif"><i class="ti ti-plus"></i> Nova vaga</button>
         </div>
@@ -809,12 +810,12 @@ function rsDoLogin(){
           <table style="width:100%;border-collapse:collapse">
             <thead>
               <tr>
-                <th style="text-align:left;font-size:10px;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:.05em;padding:12px 16px;border-bottom:1px solid #E5E7EB">Vaga &middot; Área</th>
+                <th style="text-align:left;font-size:10px;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:.05em;padding:12px 16px;border-bottom:1px solid #E5E7EB">Vaga &middot; Area</th>
                 <th style="text-align:left;font-size:10px;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:.05em;padding:12px 10px;border-bottom:1px solid #E5E7EB">Candidatos</th>
                 <th style="text-align:left;font-size:10px;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:.05em;padding:12px 10px;border-bottom:1px solid #E5E7EB">Aguard.</th>
                 <th style="text-align:left;font-size:10px;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:.05em;padding:12px 10px;border-bottom:1px solid #E5E7EB">Abertura</th>
                 <th style="text-align:left;font-size:10px;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:.05em;padding:12px 10px;border-bottom:1px solid #E5E7EB">SLA</th>
-                <th style="text-align:left;font-size:10px;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:.05em;padding:12px 10px;border-bottom:1px solid #E5E7EB">Próxima ação</th>
+                <th style="text-align:left;font-size:10px;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:.05em;padding:12px 10px;border-bottom:1px solid #E5E7EB">Proxima acao</th>
                 <th style="text-align:left;font-size:10px;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:.05em;padding:12px 10px;border-bottom:1px solid #E5E7EB">Status</th>
                 <th style="padding:12px 10px;border-bottom:1px solid #E5E7EB"></th>
               </tr>
@@ -822,7 +823,7 @@ function rsDoLogin(){
             <tbody>
               <tr v-for="job in jobs" :key="job.id" :style="{background:isVagaCrit(job)?'#FFFAFA':''}">
                 <td :style="{paddingLeft:'16px',paddingTop:'11px',paddingBottom:'11px',borderBottom:'1px solid #F8FAFC',borderLeft:isVagaCrit(job)?'3px solid #DC2626':'3px solid transparent'}">
-                  <div style="font-weight:500;font-size:12.5px;color:#0F172A">{{job.title}}<span v-if="isVagaCrit(job)" style="margin-left:6px;font-size:9px;background:#FEF2F2;color:#DC2626;padding:1px 6px;border-radius:99px;font-weight:600">Crítica</span></div>
+                  <div style="font-weight:500;font-size:12.5px;color:#0F172A">{{job.title}}<span v-if="isVagaCrit(job)" style="margin-left:6px;font-size:9px;background:#FEF2F2;color:#DC2626;padding:1px 6px;border-radius:99px;font-weight:600">Critica</span></div>
                   <div style="font-size:10.5px;color:#64748B">{{job.dept}} &middot; {{job.status==='encerrada'?('Encerrada '+fmtDate(job.closedDate)):(bizDaysSince(job.openDate)+' dias uteis aberta')}}</div>
                 </td>
                 <td style="padding:11px 10px;border-bottom:1px solid #F8FAFC;font-weight:500;font-size:12.5px">{{jobCands(job.id).length}}</td>
@@ -842,7 +843,7 @@ function rsDoLogin(){
                 <td style="padding:11px 10px;border-bottom:1px solid #F8FAFC">
                   <div style="display:flex;gap:6px">
                     <button @click="openEdit(job)" style="background:none;border:1px solid #E5E7EB;border-radius:6px;color:#64748B;font-size:11px;cursor:pointer;padding:3px 8px;font-family:Inter,sans-serif">Editar</button>
-                    <button v-if="pending(job.id).length" @click="sendToLeader(job)" style="background:#6D28D9;color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;padding:3px 8px;font-family:Inter,sans-serif">Enviar líder</button>
+                    <button v-if="pending(job.id).length" @click="sendToLeader(job)" style="background:#6D28D9;color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;padding:3px 8px;font-family:Inter,sans-serif">Enviar lider</button>
                   </div>
                 </td>
               </tr>
@@ -852,7 +853,7 @@ function rsDoLogin(){
 
         
         <div v-if="[...new Set(jobs.map(j=>j.dept||'Sem area'))].length>1" style="margin-top:14px;background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:16px 18px;box-shadow:0 1px 3px rgba(15,23,42,.04)">
-          <div style="font-size:12px;font-weight:700;color:#0F172A;margin-bottom:14px;display:flex;align-items:center;gap:7px"><i class="ti ti-chart-bar" style="font-size:14px;color:#2563EB"></i> Vagas em aberto por área</div>
+          <div style="font-size:12px;font-weight:700;color:#0F172A;margin-bottom:14px;display:flex;align-items:center;gap:7px"><i class="ti ti-chart-bar" style="font-size:14px;color:#2563EB"></i> Vagas em aberto por area</div>
           <div style="display:flex;flex-direction:column;gap:8px">
             <div v-for="area in [...new Set(jobs.filter(j=>j.status==='aberta').map(j=>j.dept||'Sem area'))]" :key="area">
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px">
@@ -874,7 +875,7 @@ function rsDoLogin(){
         <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
 
           <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:16px 18px">
-            <div style="font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;display:flex;align-items:center;gap:5px"><i class="ti ti-briefcase" style="color:#2563EB"></i> Vagas abertas por área</div>
+            <div style="font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;display:flex;align-items:center;gap:5px"><i class="ti ti-briefcase" style="color:#2563EB"></i> Vagas abertas por area</div>
             <div v-if="strategicStats.vagasPorArea.length">
               <div v-for="item in strategicStats.vagasPorArea" :key="item.area" style="margin-bottom:8px">
                 <div style="display:flex;justify-content:space-between;margin-bottom:3px">
@@ -890,7 +891,7 @@ function rsDoLogin(){
           </div>
 
           <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:16px 18px">
-            <div style="font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;display:flex;align-items:center;gap:5px"><i class="ti ti-user-check" style="color:#16A34A"></i> Contratações por área</div>
+            <div style="font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;display:flex;align-items:center;gap:5px"><i class="ti ti-user-check" style="color:#16A34A"></i> Contratacoes por area</div>
             <div v-if="strategicStats.contratacoesPorArea.length">
               <div v-for="item in strategicStats.contratacoesPorArea" :key="item.area" style="margin-bottom:8px">
                 <div style="display:flex;justify-content:space-between;margin-bottom:3px">
@@ -902,7 +903,7 @@ function rsDoLogin(){
                 </div>
               </div>
             </div>
-            <div v-else style="font-size:12px;color:#94A3B8">Nenhuma contratação no período</div>
+            <div v-else style="font-size:12px;color:#94A3B8">Nenhuma contratacao no periodo</div>
           </div>
 
           <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:16px 18px">
@@ -921,7 +922,7 @@ function rsDoLogin(){
           </div>
 
           <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:16px 18px">
-            <div style="font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;display:flex;align-items:center;gap:5px"><i class="ti ti-trending-up" style="color:#EA580C"></i> Conversão por origem</div>
+            <div style="font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;display:flex;align-items:center;gap:5px"><i class="ti ti-trending-up" style="color:#EA580C"></i> Conversao por origem</div>
             <div v-if="strategicStats.origemTotal.length">
               <div v-for="item in strategicStats.origemTotal" :key="item.origem+'c'" style="display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid #F8FAFC">
                 <span style="font-size:11px;color:#64748B;text-transform:capitalize">{{item.origem}}</span>
@@ -948,7 +949,7 @@ function rsDoLogin(){
             <p style="font-size:13px;color:#64748B">{{filteredCands.length}} exibidos &middot; {{candidates.length}} total &middot; {{jobs.filter(j=>j.status==='aberta').length}} vagas ativas</p>
           </div>
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-            <button @click="goTo('analyze')" style="background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:7px 13px;font-size:12px;cursor:pointer;color:#64748B;display:flex;align-items:center;gap:5px;font-family:Inter,sans-serif"><i class="ti ti-file-search"></i> Analisar currículo</button>
+            <button @click="goTo('analyze')" style="background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:7px 13px;font-size:12px;cursor:pointer;color:#64748B;display:flex;align-items:center;gap:5px;font-family:Inter,sans-serif"><i class="ti ti-file-search"></i> Analisar curriculo</button>
             <button @click="showManualModal=true;mf={name:'',email:'',jobId:jobs.length?jobs[0].id:'',origem:'',note:''};mfError=''" style="background:#2563EB;color:#fff;border:none;border-radius:8px;padding:7px 13px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;font-family:Inter,sans-serif"><i class="ti ti-user-plus"></i> Cadastrar manualmente</button>
           </div>
         </div>
@@ -1026,12 +1027,12 @@ function rsDoLogin(){
             </div>
             
             <div style="display:flex;padding:0 18px;border-bottom:1px solid #E5E7EB">
-              <button @click="detTab='ai'" :style="{padding:'7px 10px',border:'none',background:'none',cursor:'pointer',fontSize:'12px',fontFamily:'Inter,sans-serif',color:detTab==='ai'?'#2563EB':'#64748B',borderBottom:detTab==='ai'?'2px solid #2563EB':'2px solid transparent',marginBottom:'-1px',fontWeight:detTab==='ai'?600:400}">Análise do Perfil</button>
+              <button @click="detTab='ai'" :style="{padding:'7px 10px',border:'none',background:'none',cursor:'pointer',fontSize:'12px',fontFamily:'Inter,sans-serif',color:detTab==='ai'?'#2563EB':'#64748B',borderBottom:detTab==='ai'?'2px solid #2563EB':'2px solid transparent',marginBottom:'-1px',fontWeight:detTab==='ai'?600:400}">Analise do Perfil</button>
               <button @click="detTab='interview'" :style="{padding:'7px 10px',border:'none',background:'none',cursor:'pointer',fontSize:'12px',fontFamily:'Inter,sans-serif',color:detTab==='interview'?'#2563EB':'#64748B',borderBottom:detTab==='interview'?'2px solid #2563EB':'2px solid transparent',marginBottom:'-1px',fontWeight:detTab==='interview'?600:400}">Entrevista RH</button>
-              <button @click="detTab='hist'" :style="{padding:'7px 10px',border:'none',background:'none',cursor:'pointer',fontSize:'12px',fontFamily:'Inter,sans-serif',color:detTab==='hist'?'#2563EB':'#64748B',borderBottom:detTab==='hist'?'2px solid #2563EB':'2px solid transparent',marginBottom:'-1px',fontWeight:detTab==='hist'?600:400}">Histórico</button>
-              <button @click="detTab='notes'" :style="{padding:'7px 10px',border:'none',background:'none',cursor:'pointer',fontSize:'12px',fontFamily:'Inter,sans-serif',color:detTab==='notes'?'#2563EB':'#64748B',borderBottom:detTab==='notes'?'2px solid #2563EB':'2px solid transparent',marginBottom:'-1px',fontWeight:detTab==='notes'?600:400}">Observações</button>
+              <button @click="detTab='hist'" :style="{padding:'7px 10px',border:'none',background:'none',cursor:'pointer',fontSize:'12px',fontFamily:'Inter,sans-serif',color:detTab==='hist'?'#2563EB':'#64748B',borderBottom:detTab==='hist'?'2px solid #2563EB':'2px solid transparent',marginBottom:'-1px',fontWeight:detTab==='hist'?600:400}">Historico</button>
+              <button @click="detTab='notes'" :style="{padding:'7px 10px',border:'none',background:'none',cursor:'pointer',fontSize:'12px',fontFamily:'Inter,sans-serif',color:detTab==='notes'?'#2563EB':'#64748B',borderBottom:detTab==='notes'?'2px solid #2563EB':'2px solid transparent',marginBottom:'-1px',fontWeight:detTab==='notes'?600:400}">Observacoes</button>
               <button v-if="getSummary(viewCand.id)" @click="dlParecer(viewCand)" style="margin-left:auto;background:#2563EB;color:#fff;border:none;border-radius:7px;padding:5px 10px;font-size:11px;cursor:pointer;font-family:Inter,sans-serif;align-self:center"><i class="ti ti-download" style="font-size:12px;vertical-align:-2px"></i> Parecer PDF</button>
-              <button v-if="viewCand&&viewCand.analysis" @click="downloadAnalysisPDF(viewCand)" style="background:none;border:1px solid #2563EB;border-radius:7px;padding:5px 10px;font-size:11px;cursor:pointer;font-family:Inter,sans-serif;color:#2563EB;align-self:center;display:flex;align-items:center;gap:4px"><i class="ti ti-download" style="font-size:12px;vertical-align:-2px"></i> Análise PDF</button>
+              <button v-if="viewCand&&viewCand.analysis" @click="downloadAnalysisPDF(viewCand)" style="background:none;border:1px solid #2563EB;border-radius:7px;padding:5px 10px;font-size:11px;cursor:pointer;font-family:Inter,sans-serif;color:#2563EB;align-self:center;display:flex;align-items:center;gap:4px"><i class="ti ti-download" style="font-size:12px;vertical-align:-2px"></i> Analise PDF</button>
             </div>
             
             <div style="overflow:auto;padding:14px 18px">
@@ -1048,7 +1049,7 @@ function rsDoLogin(){
                     <text x="27" y="32" text-anchor="middle" :fill="scoreColor(viewCand.analysis.score&&viewCand.analysis.score.total||0)" style="font-size:14px;font-weight:800;font-family:Inter,sans-serif">{{viewCand.analysis.score&&viewCand.analysis.score.total||0}}</text>
                   </svg>
                   <div style="flex:1">
-                    <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Avaliação</div>
+                    <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Avaliacao</div>
                     <div :style="{fontSize:'14px',fontWeight:800,color:scoreColor(viewCand.analysis.score&&viewCand.analysis.score.total||0),marginBottom:'3px'}">{{viewCand.analysis.classification||''}}</div>
                     <div style="font-size:11px;color:rgba(255,255,255,.7)">{{viewCand.analysis.recommendation||''}}</div>
                   </div>
@@ -1085,7 +1086,7 @@ function rsDoLogin(){
                 
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
                   <div style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:10px 12px">
-                    <div style="font-size:9px;font-weight:700;color:#1D4ED8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px;display:flex;align-items:center;gap:4px"><i class="ti ti-code" style="font-size:11px"></i> Competências Técnicas</div>
+                    <div style="font-size:9px;font-weight:700;color:#1D4ED8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px;display:flex;align-items:center;gap:4px"><i class="ti ti-code" style="font-size:11px"></i> Competencias Tecnicas</div>
                     <div v-if="viewCand.analysis.candidateAnalysis&&viewCand.analysis.candidateAnalysis.hardSkills&&viewCand.analysis.candidateAnalysis.hardSkills.length" style="display:flex;flex-wrap:wrap;gap:4px">
                       <span v-for="s in viewCand.analysis.candidateAnalysis.hardSkills" :key="s" style="background:#EFF6FF;color:#1D4ED8;font-size:10px;font-weight:500;padding:2px 8px;border-radius:5px">{{s}}</span>
                     </div>
@@ -1110,7 +1111,7 @@ function rsDoLogin(){
                     </div>
                   </div>
                   <div v-if="viewCand.analysis.comparison.missing&&viewCand.analysis.comparison.missing.length" style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:10px;padding:10px 12px">
-                    <div style="font-size:9px;font-weight:700;color:#C2410C;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px;display:flex;align-items:center;gap:4px"><i class="ti ti-alert-triangle" style="font-size:11px"></i> Pontos de Atenção</div>
+                    <div style="font-size:9px;font-weight:700;color:#C2410C;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px;display:flex;align-items:center;gap:4px"><i class="ti ti-alert-triangle" style="font-size:11px"></i> Pontos de Atencao</div>
                     <div v-for="m in viewCand.analysis.comparison.missing.slice(0,5)" :key="m" style="display:flex;gap:6px;margin-bottom:4px;align-items:baseline">
                       <span style="color:#EA580C;font-size:10px;flex-shrink:0">!</span>
                       <span style="font-size:10.5px;color:#92400E;line-height:1.45">{{m}}</span>
@@ -1120,13 +1121,13 @@ function rsDoLogin(){
 
                 
                 <div v-if="viewCand.analysis.executiveSummary&&viewCand.analysis.executiveSummary.reasoning" style="background:#F8FAFC;border:1px solid #E5E7EB;border-radius:10px;padding:10px 12px">
-                  <div style="font-size:9px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;display:flex;align-items:center;gap:4px"><i class="ti ti-notes" style="font-size:11px"></i> Justificativa da Recomendação</div>
+                  <div style="font-size:9px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;display:flex;align-items:center;gap:4px"><i class="ti ti-notes" style="font-size:11px"></i> Justificativa da Recomendacao</div>
                   <p style="font-size:11.5px;color:#334155;line-height:1.65;margin:0">{{viewCand.analysis.executiveSummary.reasoning}}</p>
                 </div>
 
                 
                 <div style="margin-top:10px;padding-top:10px;border-top:1px solid #F1F5F9">
-                  <button v-if="!editAnaMode" @click="startEditAnalysis(viewCand)" style="background:none;border:1px solid #E5E7EB;border-radius:7px;padding:5px 12px;font-size:11.5px;color:#64748B;cursor:pointer;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px"><i class="ti ti-edit" style="font-size:13px"></i> Editar análise</button>
+                  <button v-if="!editAnaMode" @click="startEditAnalysis(viewCand)" style="background:none;border:1px solid #E5E7EB;border-radius:7px;padding:5px 12px;font-size:11.5px;color:#64748B;cursor:pointer;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px"><i class="ti ti-edit" style="font-size:13px"></i> Editar analise</button>
                 </div>
 
               </div>
@@ -1134,7 +1135,7 @@ function rsDoLogin(){
               
               <div v-if="detTab==='ai'&&viewCand.analysis&&editAnaMode" style="display:flex;flex-direction:column;gap:8px">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
-                  <div style="font-size:11px;font-weight:700;color:#2563EB;display:flex;align-items:center;gap:5px"><i class="ti ti-edit" style="font-size:13px"></i> Editando análise</div>
+                  <div style="font-size:11px;font-weight:700;color:#2563EB;display:flex;align-items:center;gap:5px"><i class="ti ti-edit" style="font-size:13px"></i> Editando analise</div>
                   <div style="display:flex;gap:6px">
                     <button @click="saveAnalysis(viewCand)" style="background:#2563EB;color:#fff;border:none;border-radius:6px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif">Salvar</button>
                     <button @click="cancelEditAnalysis()" style="background:none;border:1px solid #E5E7EB;border-radius:6px;padding:5px 10px;font-size:11px;color:#64748B;cursor:pointer;font-family:Inter,sans-serif">Cancelar</button>
@@ -1142,13 +1143,13 @@ function rsDoLogin(){
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
                   <div>
-                    <div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Classificação</div>
+                    <div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Classificacao</div>
                     <input v-model="editAnaFields.classification" style="width:100%;font-size:12px;padding:6px 9px;border:1px solid #6366F1;border-radius:6px;font-family:Inter,sans-serif;color:#0F172A"/>
                   </div>
                   <div>
-                    <div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Recomendação</div>
+                    <div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Recomendacao</div>
                     <select v-model="editAnaFields.recommendation" style="width:100%;font-size:12px;padding:6px 9px;border:1px solid #6366F1;border-radius:6px;font-family:Inter,sans-serif;color:#0F172A">
-                      <option>Avançar para entrevista</option>
+                      <option>Avancar para entrevista</option>
                       <option>Manter em banco de talentos</option>
                       <option>Reprovar</option>
                     </select>
@@ -1159,7 +1160,7 @@ function rsDoLogin(){
                   <textarea v-model="editAnaFields.strengths" rows="3" style="width:100%;font-size:12px;padding:6px 9px;border:1px solid #E5E7EB;border-radius:6px;font-family:Inter,sans-serif;resize:vertical"></textarea>
                 </div>
                 <div>
-                  <div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Pontos de Atenção</div>
+                  <div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Pontos de Atencao</div>
                   <textarea v-model="editAnaFields.attentionPoints" rows="2" style="width:100%;font-size:12px;padding:6px 9px;border:1px solid #E5E7EB;border-radius:6px;font-family:Inter,sans-serif;resize:vertical"></textarea>
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
@@ -1168,16 +1169,16 @@ function rsDoLogin(){
                     <textarea v-model="editAnaFields.matched" rows="4" style="width:100%;font-size:11.5px;padding:6px 9px;border:1px solid #E5E7EB;border-radius:6px;font-family:Inter,sans-serif;resize:vertical;background:#F0FDF4"></textarea>
                   </div>
                   <div>
-                    <div style="font-size:9px;font-weight:700;color:#EA580C;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Pontos de Atenção (um por linha)</div>
+                    <div style="font-size:9px;font-weight:700;color:#EA580C;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Pontos de Atencao (um por linha)</div>
                     <textarea v-model="editAnaFields.missing" rows="4" style="width:100%;font-size:11.5px;padding:6px 9px;border:1px solid #E5E7EB;border-radius:6px;font-family:Inter,sans-serif;resize:vertical;background:#FFF7ED"></textarea>
                   </div>
                 </div>
                 <div>
-                  <div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Justificativa da Recomendação</div>
+                  <div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Justificativa da Recomendacao</div>
                   <textarea v-model="editAnaFields.reasoning" rows="2" style="width:100%;font-size:12px;padding:6px 9px;border:1px solid #E5E7EB;border-radius:6px;font-family:Inter,sans-serif;resize:vertical"></textarea>
                 </div>
                 <div style="display:flex;gap:6px;justify-content:flex-end">
-                  <button @click="saveAnalysis(viewCand)" style="background:#2563EB;color:#fff;border:none;border-radius:7px;padding:8px 18px;font-size:12px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif">Salvar análise</button>
+                  <button @click="saveAnalysis(viewCand)" style="background:#2563EB;color:#fff;border:none;border-radius:7px;padding:8px 18px;font-size:12px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif">Salvar analise</button>
                   <button @click="cancelEditAnalysis()" style="background:none;border:1px solid #E5E7EB;border-radius:7px;padding:8px 14px;font-size:12px;color:#64748B;cursor:pointer;font-family:Inter,sans-serif">Cancelar</button>
                 </div>
               </div>
@@ -1188,15 +1189,15 @@ function rsDoLogin(){
                   <input type="date" :value="getIntDate(viewCand.id)" @change="setIntDate(viewCand.id,$event.target.value)" style="padding:7px 10px;border:1px solid #E5E7EB;border-radius:7px;font-size:12px;font-family:Inter,sans-serif"/>
                 </div>
                 
-                <p style="font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Transcrição Teams</p>
-                <textarea :value="getTranscript(viewCand.id)" @input="setTranscript(viewCand.id,$event.target.value)" placeholder="Cole aqui a transcrição exportada do Teams..." rows="6" style="margin-bottom:10px;font-size:12px"></textarea>
+                <p style="font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Transcricao Teams</p>
+                <textarea :value="getTranscript(viewCand.id)" @input="setTranscript(viewCand.id,$event.target.value)" placeholder="Cole aqui a transcricao exportada do Teams..." rows="6" style="margin-bottom:10px;font-size:12px"></textarea>
                 <button @click="generateInterviewSummary(viewCand)" :disabled="isGenSum||!getTranscript(viewCand.id).trim()" :style="{width:'100%',background:isGenSum?'#F1F5F9':'#0369A1',color:isGenSum?'#64748B':'#fff',border:'none',borderRadius:'8px',padding:'10px',fontSize:'13px',fontWeight:700,cursor:isGenSum?'not-allowed':'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:'8px',marginBottom:'12px',fontFamily:'Inter,sans-serif'}">
                   <svg v-if="isGenSum" class="spin" width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#94A3B8" stroke-width="4" opacity=".25"/><path d="M4 12a8 8 0 018-8" stroke="#94A3B8" stroke-width="4" stroke-linecap="round"/></svg>
                   <span :class="isGenSum?'pulse':''">{{isGenSum?genSumStep:'Gerar resumo da entrevista'}}</span>
                 </button>
                 <div v-if="getSummary(viewCand.id)">
                   <div style="background:#F0FDF4;border:1px solid #86EFAC;border-radius:9px;padding:12px 14px;margin-bottom:10px">
-                    <div style="font-size:9.5px;font-weight:700;color:#16A34A;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Recomendação</div>
+                    <div style="font-size:9.5px;font-weight:700;color:#16A34A;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Recomendacao</div>
                     <div style="font-size:13px;font-weight:700;color:#16A34A">{{getSummary(viewCand.id).recomendacao}}</div>
                   </div>
                   <div v-for="row in summaryRows" :key="row.label" :style="{background:row.bg,borderRadius:'7px',padding:'10px 12px',marginBottom:'7px'}">
@@ -1224,7 +1225,7 @@ function rsDoLogin(){
                       </div>
                     </div>
                     <div>
-                      <div style="font-size:9.5px;font-weight:700;color:#EA580C;text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">Pontos de atenção</div>
+                      <div style="font-size:9.5px;font-weight:700;color:#EA580C;text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">Pontos de atencao</div>
                       <div v-for="(p,i) in getSummary(viewCand.id).pontosAtencao||[]" :key="i" style="display:flex;gap:6px;font-size:12px;margin-bottom:4px;align-items:baseline">
                         <span v-if="!isEditing(viewCand.id,'pontosAtencao')" style="color:#EA580C">!</span><span v-if="!isEditing(viewCand.id,'pontosAtencao')">{{p}}</span>
                       </div>
@@ -1268,7 +1269,7 @@ function rsDoLogin(){
               </div>
               
               <div v-if="detTab==='notes'">
-                <div style="font-size:9.5px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px">Observações internas . RH</div>
+                <div style="font-size:9.5px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px">Observacoes internas . RH</div>
                 <div v-if="getNote(viewCand.id)" style="border-left:3px solid #2563EB;background:#F8FAFC;border-radius:0 8px 8px 0;padding:11px 13px;margin-bottom:12px">
                   <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
                     <div style="width:22px;height:22px;border-radius:50%;background:#2563EB;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff">RH</div>
@@ -1282,7 +1283,7 @@ function rsDoLogin(){
                     <div style="width:20px;height:20px;border-radius:50%;background:#2563EB;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff">RH</div>
                     <span style="font-size:11px;color:#64748B">{{getNote(viewCand.id)?'Editar nota...':'Adicionar nota...'}}</span>
                   </div>
-                  <textarea :value="getNote(viewCand.id)" @input="saveNote(viewCand.id,$event.target.value)" placeholder="Registre observações para uso interno do RH sobre este candidato..." rows="5" style="border:none;border-radius:0;font-size:12.5px;line-height:1.75;resize:vertical;background:#fff"></textarea>
+                  <textarea :value="getNote(viewCand.id)" @input="saveNote(viewCand.id,$event.target.value)" placeholder="Registre observacoes para uso interno do RH sobre este candidato..." rows="5" style="border:none;border-radius:0;font-size:12.5px;line-height:1.75;resize:vertical;background:#fff"></textarea>
                 </div>
               </div>
             </div>
@@ -1294,7 +1295,7 @@ function rsDoLogin(){
       <div v-else-if="nav==='analyze'">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
           <button @click="goTo('candidates')" style="background:none;border:none;cursor:pointer;color:#2563EB;font-size:13px;font-weight:500;display:flex;align-items:center;gap:5px;font-family:Inter,sans-serif"><i class="ti ti-arrow-left"></i> Candidatos</button>
-          <h1 style="font-size:21px;font-weight:700;color:#0F172A">Analisar currículo</h1>
+          <h1 style="font-size:21px;font-weight:700;color:#0F172A">Analisar curriculo</h1>
         </div>
         <div v-if="!jobs.length" style="background:#FEF3C7;border-radius:8px;padding:16px;font-size:13px;color:#92400E">Cadastre pelo menos uma vaga antes. <button @click="goTo('jobs')" style="background:none;border:none;cursor:pointer;color:#2563EB;font-size:13px;font-family:Inter,sans-serif">Ir para Vagas</button></div>
         <div v-else style="background:#fff;border:1px solid #E5E7EB;border-radius:14px;padding:26px;max-width:600px;box-shadow:0 1px 3px rgba(15,23,42,.06)">
@@ -1305,21 +1306,21 @@ function rsDoLogin(){
             </select>
           </label>
           <input ref="fileInput" type="file" accept="application/pdf" style="display:none" @change="e=>handleFile(e.target.files[0])"/>
-          <p style="font-size:12px;color:#64748B;margin-bottom:8px">Currículo em PDF *</p>
+          <p style="font-size:12px;color:#64748B;margin-bottom:8px">Curriculo em PDF *</p>
           <div v-if="pdfFile" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(135deg,#EFF6FF,#F0F4FF);border:1px solid #C7D6FF;border-radius:10px;margin-bottom:16px">
             <div style="width:38px;height:38px;border-radius:9px;background:#DBEAFE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-file-type-pdf" style="font-size:18px;color:#1D4ED8"></i></div>
             <div style="flex:1">
               <p style="font-size:13px;font-weight:700;margin-bottom:2px;color:#0F172A">{{pdfFile.name}}</p>
-              <p style="font-size:11px;color:#64748B">{{Math.round(pdfFile.size/1024)}} KB &middot; PDF pronto para análise</p>
+              <p style="font-size:11px;color:#64748B">{{Math.round(pdfFile.size/1024)}} KB &middot; PDF pronto para analise</p>
             </div>
             <button @click="pdfFile=null" style="background:none;border:none;cursor:pointer;color:#94A3B8;font-size:18px;line-height:1">&times;</button>
           </div>
           <div v-else @click="$refs.fileInput.click()" @dragover.prevent="isDragging=true" @dragleave="isDragging=false" @drop="onFileDrop"
             :style="{border:'2px dashed '+(isDragging?'#2563EB':'#E5E7EB'),borderRadius:'10px',padding:'36px 20px',textAlign:'center',cursor:'pointer',background:isDragging?'#EFF6FF':'#F8FAFC',marginBottom:'16px'}">
             <i class="ti ti-cloud-upload" style="font-size:32px;color:#94A3B8;margin-bottom:10px;display:block"></i>
-            <p style="font-size:14px;font-weight:700;margin-bottom:4px;color:#0F172A">Arraste o currículo aqui</p>
+            <p style="font-size:14px;font-weight:700;margin-bottom:4px;color:#0F172A">Arraste o curriculo aqui</p>
             <p style="font-size:12px;color:#64748B">ou <span style="color:#2563EB;font-weight:600">clique para selecionar</span></p>
-            <p style="font-size:11px;color:#94A3B8;margin-top:6px">Apenas PDF &middot; Máximo 10 MB</p>
+            <p style="font-size:11px;color:#94A3B8;margin-top:6px">Apenas PDF &middot; Maximo 10 MB</p>
           </div>
           <div v-if="error" style="background:#FEF2F2;color:#DC2626;font-size:12px;padding:8px 12px;border-radius:8px;margin-bottom:12px">{{error}}</div>
           <button @click="analyze" :disabled="isAnalyzing" :style="{width:'100%',background:isAnalyzing?'#F1F5F9':'#2563EB',color:isAnalyzing?'#64748B':'#fff',border:'none',borderRadius:'8px',padding:'12px',fontSize:'14px',fontWeight:700,cursor:isAnalyzing?'not-allowed':'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:'8px',fontFamily:'Inter,sans-serif'}">
@@ -1357,7 +1358,7 @@ function rsDoLogin(){
             <div :style="{background:recMeta(latestResult.analysis&&latestResult.analysis.recommendation).bg,padding:'10px 20px',display:'flex',alignItems:'center',gap:'10px',borderBottom:'1px solid #E5E7EB'}">
               <i class="ti ti-sparkles" :style="{fontSize:'16px',color:recMeta(latestResult.analysis&&latestResult.analysis.recommendation).color}"></i>
               <div>
-                <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em" :style="{color:recMeta(latestResult.analysis&&latestResult.analysis.recommendation).color}">Recomendação</div>
+                <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em" :style="{color:recMeta(latestResult.analysis&&latestResult.analysis.recommendation).color}">Recomendacao</div>
                 <div style="font-size:13px;font-weight:700" :style="{color:recMeta(latestResult.analysis&&latestResult.analysis.recommendation).color}">{{latestResult.analysis&&latestResult.analysis.recommendation}}</div>
               </div>
               <div style="margin-left:auto">
@@ -1373,7 +1374,7 @@ function rsDoLogin(){
 
             
             <div v-if="latestResult.analysis&&latestResult.analysis.score" style="padding:14px 20px;border-bottom:1px solid #E5E7EB">
-              <div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Avaliação por dimensão</div>
+              <div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Avaliacao por dimensao</div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
                 <div v-for="d in [{l:'Hard Skills',v:latestResult.analysis.score.hardSkills||0,m:50},{l:'Experiencia',v:latestResult.analysis.score.experience||0,m:25},{l:'Soft Skills',v:latestResult.analysis.score.softSkills||0,m:15},{l:'Fit Cultural',v:latestResult.analysis.score.culturalFit||0,m:10}]" :key="d.l">
                   <div style="display:flex;justify-content:space-between;margin-bottom:3px">
@@ -1461,7 +1462,7 @@ function rsDoLogin(){
           <div v-if="filtCands.length===0" style="text-align:center;padding:48px 20px;background:#fff;border:1px solid #E5E7EB;border-radius:12px">
             <i class="ti ti-git-merge" style="font-size:32px;color:#CBD5E1;display:block;margin-bottom:10px"></i>
             <div style="font-size:14px;font-weight:600;color:#94A3B8">Nenhum candidato no pipeline</div>
-            <div style="font-size:12px;color:#CBD5E1;margin-top:4px">Analise currículos para começar</div>
+            <div style="font-size:12px;color:#CBD5E1;margin-top:4px">Analise curriculos para comecar</div>
           </div>
         </div>
       </div>
@@ -1469,7 +1470,7 @@ function rsDoLogin(){
       
       <div v-else-if="nav==='banco'">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
-          <div><h1 style="font-size:21px;font-weight:700;color:#0F172A;margin-bottom:3px">Banco de talentos</h1><p style="font-size:13px;color:#64748B">{{candidates.filter(c=>c.status==='banco').length}} candidatos disponíveis</p></div>
+          <div><h1 style="font-size:21px;font-weight:700;color:#0F172A;margin-bottom:3px">Banco de talentos</h1><p style="font-size:13px;color:#64748B">{{candidates.filter(c=>c.status==='banco').length}} candidatos disponiveis</p></div>
           <button @click="goTo('analyze')" style="background:#2563EB;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;font-family:Inter,sans-serif"><i class="ti ti-search"></i> Buscar candidatos</button>
         </div>
         
@@ -1481,21 +1482,21 @@ function rsDoLogin(){
               <div style="width:28px;height:28px;border-radius:7px;background:#EFF6FF;display:flex;align-items:center;justify-content:center"><i class="ti ti-database" style="font-size:14px;color:#2563EB"></i></div>
             </div>
             <div style="font-size:28px;font-weight:800;color:#2563EB;letter-spacing:-.5px;margin-bottom:3px">{{candidates.filter(c=>c.status==='banco').length}}</div>
-            <div style="font-size:11px;color:#64748B">Candidatos disponíveis</div>
+            <div style="font-size:11px;color:#64748B">Candidatos disponiveis</div>
           </div>
           <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:16px;position:relative;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.05)">
             <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#7C3AED;border-radius:12px 12px 0 0"></div>
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-              <span style="font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em">Score médio</span>
+              <span style="font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em">Score medio</span>
               <div style="width:28px;height:28px;border-radius:7px;background:#F5F3FF;display:flex;align-items:center;justify-content:center"><i class="ti ti-star" style="font-size:14px;color:#7C3AED"></i></div>
             </div>
             <div style="font-size:28px;font-weight:800;color:#7C3AED;letter-spacing:-.5px;margin-bottom:3px">{{candidates.filter(c=>c.status==='banco'&&c.score>0).length?Math.round(candidates.filter(c=>c.status==='banco'&&c.score>0).reduce((s,c)=>s+c.score,0)/candidates.filter(c=>c.status==='banco'&&c.score>0).length):''}}</div>
-            <div style="font-size:11px;color:#64748B">Pontuação média</div>
+            <div style="font-size:11px;color:#64748B">Pontuacao media</div>
           </div>
           <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:16px;position:relative;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.05)">
             <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#16A34A;border-radius:12px 12px 0 0"></div>
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-              <span style="font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em">Alta aderência</span>
+              <span style="font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em">Alta aderencia</span>
               <div style="width:28px;height:28px;border-radius:7px;background:#F0FDF4;display:flex;align-items:center;justify-content:center"><i class="ti ti-circle-check" style="font-size:14px;color:#16A34A"></i></div>
             </div>
             <div style="font-size:28px;font-weight:800;color:#16A34A;letter-spacing:-.5px;margin-bottom:3px">{{candidates.filter(c=>c.status==='banco'&&c.score>=80).length}}</div>
@@ -1504,7 +1505,7 @@ function rsDoLogin(){
           <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:16px;position:relative;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.05)">
             <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#EA580C;border-radius:12px 12px 0 0"></div>
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-              <span style="font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em">Vagas únicas</span>
+              <span style="font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em">Vagas unicas</span>
               <div style="width:28px;height:28px;border-radius:7px;background:#FFF7ED;display:flex;align-items:center;justify-content:center"><i class="ti ti-briefcase" style="font-size:14px;color:#EA580C"></i></div>
             </div>
             <div style="font-size:28px;font-weight:800;color:#EA580C;letter-spacing:-.5px;margin-bottom:3px">{{[...new Set(candidates.filter(c=>c.status==='banco').map(c=>c.jobId))].length}}</div>
@@ -1515,7 +1516,7 @@ function rsDoLogin(){
         <div v-if="!candidates.filter(c=>c.status==='banco').length" style="text-align:center;padding:56px 20px;background:#fff;border:1px solid #E5E7EB;border-radius:14px">
           <i class="ti ti-database" style="font-size:36px;color:#CBD5E1;display:block;margin-bottom:12px"></i>
           <div style="font-size:15px;font-weight:700;color:#94A3B8;margin-bottom:4px">Banco de talentos vazio</div>
-          <div style="font-size:12px;color:#CBD5E1">Candidatos mantidos no banco aparecerão aqui</div>
+          <div style="font-size:12px;color:#CBD5E1">Candidatos mantidos no banco aparecerao aqui</div>
         </div>
         <div v-else style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">
           <div v-for="c in candidates.filter(c=>c.status==='banco'&&inPeriod(c.submittedAt)&&(insightFilter==='banco_70'?c.analysis&&c.analysis.score&&c.analysis.score.total>=70:true))" :key="c.id"
@@ -1554,7 +1555,7 @@ function rsDoLogin(){
               </div>
               
               <div v-if="c.analysis&&c.analysis.candidateAnalysis&&c.analysis.candidateAnalysis.hardSkills&&c.analysis.candidateAnalysis.hardSkills.length" style="margin-bottom:10px">
-                <div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px">Competências</div>
+                <div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px">Competencias</div>
                 <div style="display:flex;flex-wrap:wrap;gap:4px">
                   <span v-for="sk in c.analysis.candidateAnalysis.hardSkills.slice(0,4)" :key="sk" style="font-size:10px;padding:2px 7px;border-radius:5px;background:#EFF6FF;color:#1D4ED8;font-weight:500">{{sk}}</span>
                   <span v-if="c.analysis.candidateAnalysis.hardSkills.length>4" style="font-size:10px;padding:2px 7px;border-radius:5px;background:#F1F5F9;color:#64748B">+{{c.analysis.candidateAnalysis.hardSkills.length-4}}</span>
@@ -1596,7 +1597,7 @@ function rsDoLogin(){
           </div>
           <div style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:14px 16px">
             <div style="font-size:11.5px;font-weight:700;color:#0F172A;margin-bottom:14px">Candidatos por cargo</div>
-            <div v-if="candidates.length===0" style="font-size:12px;color:#94A3B8;padding:8px 0">Nenhum dado disponível ainda</div>
+            <div v-if="candidates.length===0" style="font-size:12px;color:#94A3B8;padding:8px 0">Nenhum dado disponivel ainda</div>
             <div v-for="job in jobs" :key="job.id" style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F8FAFC">
               <span style="font-size:12px;color:#64748B">{{job.title}}</span>
               <span style="font-size:12px;font-weight:600;color:#0F172A">{{candidates.filter(c=>c.jobId===job.id).length}}</span>
