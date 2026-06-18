@@ -26,8 +26,6 @@
     ::-webkit-scrollbar-track{background:transparent}
     ::-webkit-scrollbar-thumb{background:#E5E7EB;border-radius:99px}
     ::-webkit-scrollbar-thumb:hover{background:#CBD5E1}
-  #rs-login{position:fixed!important;top:0!important;right:0!important;bottom:0!important;left:0!important;z-index:99999!important;}
-  .rs-hidden{display:none!important;}
   </style>
 
 <style>
@@ -243,29 +241,33 @@ input,select,textarea{transition:border-color .15s,box-shadow .15s}
 </style>
 </head>
 <body>
-<!-- ════ PRE-LOGIN (Pure HTML, no Vue) ════ -->
+<!-- ════ LOGIN ════ -->
+<style>
+  #rs-login{position:fixed!important;top:0!important;right:0!important;bottom:0!important;left:0!important;z-index:99999!important;}
+  .rs-hidden{display:none!important;}
+</style>
 <div id="rs-login" style="position:fixed;top:0;right:0;bottom:0;left:0;background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 60%,#2563EB 100%);display:flex;align-items:center;justify-content:center;padding:20px;z-index:99999;font-family:Inter,sans-serif">
   <div style="background:#fff;border-radius:16px;padding:40px 36px;width:100%;max-width:380px;box-shadow:0 24px 64px rgba(0,0,0,.3)">
     <div style="text-align:center;margin-bottom:28px">
       <div style="display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;background:linear-gradient(135deg,#1E3A8A,#2563EB);border-radius:14px;margin-bottom:12px">
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       </div>
-      <div style="font-size:20px;font-weight:800;color:#0F172A;letter-spacing:-.3px">R&S RH</div>
+      <div style="font-size:20px;font-weight:800;color:#0F172A;letter-spacing:-.3px">R&amp;S RH</div>
       <div style="font-size:12px;color:#64748B;margin-top:3px">Inteligência em Pessoas</div>
     </div>
-    <form onsubmit="rsDoLogin();return false;" autocomplete="on">
-    <div style="margin-bottom:14px">
-      <label style="font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Usuário</label>
-      <input id="rs-login-user" type="text" name="username" autocomplete="username" placeholder="Seu nome" style="width:100%;padding:10px 12px;border:1.5px solid #E5E7EB;border-radius:9px;font-size:13px;font-family:Inter,sans-serif;color:#0F172A;background:#F8FAFC;outline:none;box-sizing:border-box"/>
-    </div>
-    <div style="margin-bottom:18px">
-      <label style="font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Senha</label>
-      <input id="rs-login-pass" type="password" name="password" autocomplete="current-password" placeholder="••••••••" style="width:100%;padding:10px 12px;border:1.5px solid #E5E7EB;border-radius:9px;font-size:13px;font-family:Inter,sans-serif;color:#0F172A;background:#F8FAFC;outline:none;box-sizing:border-box"/>
-    </div>
-    <div id="rs-login-err" style="display:none;background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:9px 12px;font-size:12px;color:#DC2626;margin-bottom:14px">❌ Usuário ou senha incorretos.</div>
-    <button type="submit" style="width:100%;background:linear-gradient(135deg,#1E3A8A,#2563EB);color:#fff;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;box-shadow:0 4px 14px rgba(37,99,235,.35)">Entrar</button>
+    <form onsubmit="rsDoLogin();return false;" autocomplete="on" method="dialog">
+      <div style="margin-bottom:14px">
+        <label style="font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Usuário</label>
+        <input id="rs-u" type="text" name="username" autocomplete="username" placeholder="Seu nome" style="width:100%;padding:10px 12px;border:1.5px solid #E5E7EB;border-radius:9px;font-size:13px;font-family:Inter,sans-serif;color:#0F172A;background:#F8FAFC;outline:none;box-sizing:border-box"/>
+      </div>
+      <div style="margin-bottom:18px">
+        <label style="font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Senha</label>
+        <input id="rs-p" type="password" name="password" autocomplete="current-password" placeholder="••••••••" style="width:100%;padding:10px 12px;border:1.5px solid #E5E7EB;border-radius:9px;font-size:13px;font-family:Inter,sans-serif;color:#0F172A;background:#F8FAFC;outline:none;box-sizing:border-box"/>
+      </div>
+      <div id="rs-err" style="display:none;background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:9px 12px;font-size:12px;color:#DC2626;margin-bottom:14px">Usuário ou senha incorretos.</div>
+      <button type="submit" style="width:100%;background:linear-gradient(135deg,#1E3A8A,#2563EB);color:#fff;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;box-shadow:0 4px 14px rgba(37,99,235,.35)">Entrar</button>
     </form>
-    <p style="text-align:center;font-size:11px;color:#94A3B8;margin-top:18px">Acesso restrito · R&S RH</p>
+    <p style="text-align:center;font-size:11px;color:#94A3B8;margin-top:18px">Acesso restrito &middot; R&amp;S RH</p>
   </div>
 </div>
 <script>
@@ -274,32 +276,27 @@ window.RS_USERS=[
   {id:'luciana',name:'Luciana Montozo',firstName:'Luciana',password:'Luciana@2026',role:'user'},
   {id:'mariana',name:'Mariana Luduvice',firstName:'Mariana',password:'Mariana@2026',role:'user'}
 ];
-window.RS_USER=null;
 function rsDoLogin(){
-  var u=document.getElementById('rs-login-user').value.trim().toLowerCase();
-  var p=document.getElementById('rs-login-pass').value;
+  var u=(document.getElementById('rs-u').value||'').trim().toLowerCase();
+  var p=document.getElementById('rs-p').value||'';
   var found=window.RS_USERS.find(function(x){return x.name.toLowerCase()===u||x.firstName.toLowerCase()===u||x.id===u;});
-  var err=document.getElementById('rs-login-err');
-  if(!found||found.password!==p){err.style.display='block';return;}
-  err.style.display='none';
-  window.RS_USER=found;
+  if(!found||found.password!==p){document.getElementById('rs-err').style.display='block';return;}
+  document.getElementById('rs-err').style.display='none';
   try{localStorage.setItem('rsrh_user',found.id);}catch(e){}
-  // Update Vue reactively
   if(window._vueSetUser)window._vueSetUser(found);
-  document.getElementById('rs-login').classList.add('rs-hidden');
 }
-// Try restore session
 (function(){
   try{
     var s=localStorage.getItem('rsrh_user');
-    if(s){var u=window.RS_USERS.find(function(x){return x.id===s;});if(u){window.RS_USER=u;}}
+    if(s){var u=window.RS_USERS.find(function(x){return x.id===s;});if(u)window.RS_USER=u;}
   }catch(e){}
 })();
 </script>
 
 <div id="vue-err" style="display:none"></div>
 <div id="app">
-  <script type="text/html" id="app-tpl"><!-- API MODAL -->
+  <script type="text/html" id="app-tpl">
+<!-- API MODAL -->
 <div v-if="showApiModal" style="position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:999">
   <div style="background:#fff;border-radius:12px;padding:28px;width:440px;max-width:calc(100vw - 32px);border:1px solid #E5E7EB">
     <p style="font-weight:700;font-size:17px;margin-bottom:6px">Chave da API Anthropic</p>
@@ -391,6 +388,7 @@ function rsDoLogin(){
     </div>
   </div>
 </div>
+
 <!-- APP LAYOUT -->
 <div style="display:flex;min-height:100vh">
 
@@ -462,14 +460,13 @@ function rsDoLogin(){
       <p style="font-size:10px;color:#475569">{{metrics.contratados}} contratados</p>
       <p v-if="saveMsg" style="color:#86EFAC;font-size:10px;margin-top:5px">&#9679; {{saveMsg}}</p>
     </div>
-    <!-- User panel + logout -->
     <div style="padding:10px 12px;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:9px">
-      <div :style="{width:'30px',height:'30px',borderRadius:'50%',background:'#2563EB',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'11px',fontWeight:700,color:'#fff',flexShrink:0}">{{currentUser?.firstName?.slice(0,2)?.toUpperCase()??''}}</div>
+      <div :style="{width:'30px',height:'30px',borderRadius:'50%',background:'#2563EB',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'11px',fontWeight:700,color:'#fff',flexShrink:0}">{{currentUser&&currentUser.firstName?currentUser.firstName.slice(0,2).toUpperCase():'RH'}}</div>
       <div style="flex:1;min-width:0">
-        <div style="font-size:11.5px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{currentUser?.name??''}}</div>
-        <div style="font-size:9.5px;color:rgba(255,255,255,.45)">{{currentUser?.role==='admin'?'Administrador':'Recrutador(a)'}}</div>
+        <div style="font-size:11.5px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{currentUser?currentUser.name:''}}</div>
+        <div style="font-size:9.5px;color:rgba(255,255,255,.45)">{{currentUser&&currentUser.role==="admin"?"Administrador":"Recrutador(a)"}}</div>
       </div>
-      <button @click="rsLogout()" title="Sair" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,.4);padding:4px;border-radius:6px;display:flex;align-items:center;flex-shrink:0;transition:color .15s" @mouseover="$event.target.style.color='#fff'" @mouseout="$event.target.style.color='rgba(255,255,255,.4)'">
+      <button @click="rsLogout()" title="Sair" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,.4);padding:4px;border-radius:6px;display:flex;align-items:center;flex-shrink:0">
         <i class="ti ti-logout" style="font-size:16px"></i>
       </button>
     </div>
@@ -504,8 +501,8 @@ function rsDoLogin(){
           </div>
           <!-- content -->
           <div style="max-width:520px">
-            <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">{{greeting()}}, {{currentUser?.firstName??''}}!</div>
-            <h1 style="font-size:28px;font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:-.4px">{{greeting()}}, {{currentUser?.firstName??''}}!</h1>
+            <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">{{greeting()}}, {{currentUser ? currentUser.firstName : ""}}!</div>
+            <h1 style="font-size:28px;font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:-.4px">{{greeting()}}, {{currentUser ? currentUser.firstName : "RH"}}!</h1>
             <p style="font-size:14px;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:20px">Você tem <strong style="color:#fff">{{candidates.filter(c=>c.status==='aguardando_lider').length}} candidato(s)</strong> aguardando aprovação e <strong style="color:#fff">{{jobs.filter(j=>j.status==='aberta'&&bizDaysSince(j.openDate)>8).length}} vaga(s)</strong> próximas do vencimento do SLA.</p>
             <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
               <button @click="showJobModal=true" style="background:#fff;color:#1E3A8A;border:none;border-radius:9px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:Inter,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.15)"><i class="ti ti-plus"></i> Nova vaga</button>
@@ -630,7 +627,7 @@ function rsDoLogin(){
                   <div style="width:34px;height:34px;border-radius:9px;background:#FEF2F2;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-briefcase" style="font-size:15px;color:#DC2626"></i></div>
                   <div style="flex:1">
                     <div style="font-size:12px;font-weight:500;color:#0F172A;line-height:1.4">{{j.title}}</div>
-                    <div style="font-size:10.5px;color:#DC2626;margin-top:1px">{{bizDaysSince(j.openDate)}} dias úteis — SLA vencido (meta: 10d)</div>
+                    <div style="font-size:10.5px;color:#DC2626;margin-top:1px">{{bizDaysSince(j.openDate)}} dias uteis — SLA vencido (meta: 10d)</div>
                   </div>
                   <i class="ti ti-chevron-right" style="font-size:14px;color:#CBD5E1"></i>
                 </div>
@@ -665,7 +662,7 @@ function rsDoLogin(){
                 </div>
                 <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F8FAFC">
                   <div style="width:30px;height:30px;border-radius:8px;background:#FFF7ED;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-clock" style="font-size:14px;color:#EA580C"></i></div>
-                  <div><div style="font-size:10px;color:#94A3B8">Tempo médio de fechamento</div><div style="font-size:13px;font-weight:700;color:#0F172A">{{metrics.avgTTF?metrics.avgTTF+' dias \u00fateis':'N/D'}}</div></div>
+                  <div><div style="font-size:10px;color:#94A3B8">Tempo médio de fechamento</div><div style="font-size:13px;font-weight:700;color:#0F172A">{{metrics.avgTTF?metrics.avgTTF+' dias uteis':'N/D'}}</div></div>
                 </div>
                 <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F8FAFC">
                   <div style="width:30px;height:30px;border-radius:8px;background:#F0FDF4;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-file-text" style="font-size:14px;color:#16A34A"></i></div>
@@ -730,7 +727,7 @@ function rsDoLogin(){
               <div style="font-size:12px;font-weight:600;color:#fff;margin-bottom:3px">
                 {{jobs.filter(j=>j.status==='aberta'&&bizDaysSince(j.openDate)>=20).length}} vaga(s) próximas do limite
               </div>
-              <div style="font-size:10.5px;color:rgba(255,255,255,.65)">Acima de 20 dias úteis abertas</div>
+              <div style="font-size:10.5px;color:rgba(255,255,255,.65)">Acima de 20 dias uteis abertas</div>
             </div>
             <div v-else style="background:rgba(22,163,74,.15);border:1px solid rgba(22,163,74,.3);border-radius:10px;padding:12px 14px">
               <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
@@ -826,17 +823,17 @@ function rsDoLogin(){
               <tr v-for="job in jobs" :key="job.id" :style="{background:isVagaCrit(job)?'#FFFAFA':''}">
                 <td :style="{paddingLeft:'16px',paddingTop:'11px',paddingBottom:'11px',borderBottom:'1px solid #F8FAFC',borderLeft:isVagaCrit(job)?'3px solid #DC2626':'3px solid transparent'}">
                   <div style="font-weight:500;font-size:12.5px;color:#0F172A">{{job.title}}<span v-if="isVagaCrit(job)" style="margin-left:6px;font-size:9px;background:#FEF2F2;color:#DC2626;padding:1px 6px;border-radius:99px;font-weight:600">Crítica</span></div>
-                  <div style="font-size:10.5px;color:#64748B">{{job.dept}} &middot; {{job.status==='encerrada'?('Encerrada '+fmtDate(job.closedDate)):(bizDaysSince(job.openDate)+' dias \u00fateis aberta')}}</div>
+                  <div style="font-size:10.5px;color:#64748B">{{job.dept}} &middot; {{job.status==='encerrada'?('Encerrada '+fmtDate(job.closedDate)):(bizDaysSince(job.openDate)+' dias uteis aberta')}}</div>
                 </td>
                 <td style="padding:11px 10px;border-bottom:1px solid #F8FAFC;font-weight:500;font-size:12.5px">{{jobCands(job.id).length}}</td>
                 <td style="padding:11px 10px;border-bottom:1px solid #F8FAFC">
-                  <span :style="{fontSize:'12px',fontWeight:600,color:pending(job.id).length>0?'#EA580C':'#94A3B8'}">{{pending(job.id).length}}{{pending(job.id).length>0?' \u26a0':''}}</span>
+                  <span :style="{fontSize:'12px',fontWeight:600,color:pending(job.id).length>0?'#EA580C':'#94A3B8'}">{{pending(job.id).length}}{{pending(job.id).length>0?' !':''}}</span>
                 </td>
-                <td style="padding:11px 10px;border-bottom:1px solid #F8FAFC;font-size:12px;color:#64748B;white-space:nowrap">{{fmtDate(job.openDate)||'\u2014'}}</td>
+                <td style="padding:11px 10px;border-bottom:1px solid #F8FAFC;font-size:12px;color:#64748B;white-space:nowrap">{{fmtDate(job.openDate)||''}}</td>
                 <td style="padding:11px 10px;border-bottom:1px solid #F8FAFC">
                   <div v-if="job.status==='aberta'" :style="{fontSize:'11px',fontWeight:500,color:bizDaysSince(job.openDate)>10?'#DC2626':bizDaysSince(job.openDate)>=8?'#EA580C':'#16A34A'}">{{bizDaysSince(job.openDate)}}d / 10d</div>
                   <div v-if="job.status==='aberta'" style="height:4px;border-radius:99px;background:#E5E7EB;width:52px;margin-top:2px"><div :style="{height:'4px',borderRadius:'99px',width:Math.min(Math.round(bizDaysSince(job.openDate)/10*100),100)+'%',background:bizDaysSince(job.openDate)>10?'#DC2626':bizDaysSince(job.openDate)>=8?'#EA580C':'#16A34A'}"></div></div>
-                  <div v-if="job.status!=='aberta'" style="font-size:11px;color:#94A3B8">{{job.timeToFill?job.timeToFill+'d \u00fateis':'\u2014'}}</div>
+                  <div v-if="job.status!=='aberta'" style="font-size:11px;color:#94A3B8">{{job.timeToFill?job.timeToFill+'d':''}}</div>
                 </td>
                 <td style="padding:11px 10px;border-bottom:1px solid #F8FAFC;font-size:12px;color:#64748B;max-width:200px">{{proximaAcao(job)}}</td>
                 <td style="padding:11px 10px;border-bottom:1px solid #F8FAFC">
@@ -854,19 +851,19 @@ function rsDoLogin(){
         </div>
 
         <!-- Vagas por área -->
-        <div v-if="[...new Set(jobs.map(j=>j.dept||'Sem \u00e1rea'))].length>1" style="margin-top:14px;background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:16px 18px;box-shadow:0 1px 3px rgba(15,23,42,.04)">
+        <div v-if="[...new Set(jobs.map(j=>j.dept||'Sem area'))].length>1" style="margin-top:14px;background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:16px 18px;box-shadow:0 1px 3px rgba(15,23,42,.04)">
           <div style="font-size:12px;font-weight:700;color:#0F172A;margin-bottom:14px;display:flex;align-items:center;gap:7px"><i class="ti ti-chart-bar" style="font-size:14px;color:#2563EB"></i> Vagas em aberto por área</div>
           <div style="display:flex;flex-direction:column;gap:8px">
-            <div v-for="area in [...new Set(jobs.filter(j=>j.status==='aberta').map(j=>j.dept||'Sem \u00e1rea'))]" :key="area">
+            <div v-for="area in [...new Set(jobs.filter(j=>j.status==='aberta').map(j=>j.dept||'Sem area'))]" :key="area">
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px">
                 <span style="font-size:12px;color:#0F172A;font-weight:500">{{area}}</span>
                 <div style="display:flex;align-items:center;gap:8px">
-                  <span style="font-size:11px;color:#64748B">{{jobs.filter(j=>j.status==='aberta'&&(j.dept||'Sem \u00e1rea')===area).length}} vaga(s)</span>
-                  <span style="font-size:10.5px;color:#94A3B8">{{candidates.filter(c=>jobs.filter(j=>j.status==='aberta'&&(j.dept||'Sem \u00e1rea')===area).map(j=>j.id).includes(c.jobId)).length}} candidatos</span>
+                  <span style="font-size:11px;color:#64748B">{{jobs.filter(j=>j.status==='aberta'&&(j.dept||'Sem area')===area).length}} vaga(s)</span>
+                  <span style="font-size:10.5px;color:#94A3B8">{{candidates.filter(c=>jobs.filter(j=>j.status==='aberta'&&(j.dept||'Sem area')===area).map(j=>j.id).includes(c.jobId)).length}} candidatos</span>
                 </div>
               </div>
               <div style="height:8px;background:#F1F5F9;border-radius:99px;overflow:hidden">
-                <div :style="{height:'8px',borderRadius:'99px',background:'#2563EB',width:(jobs.filter(j=>j.status==='aberta'&&(j.dept||'Sem \u00e1rea')===area).length/Math.max(jobs.filter(j=>j.status==='aberta').length,1)*100)+'%',transition:'width .4s ease'}"></div>
+                <div :style="{height:'8px',borderRadius:'99px',background:'#2563EB',width:(jobs.filter(j=>j.status==='aberta'&&(j.dept||'Sem area')===area).length/Math.max(jobs.filter(j=>j.status==='aberta').length,1)*100)+'%',transition:'width .4s ease'}"></div>
               </div>
             </div>
           </div>
@@ -1052,8 +1049,8 @@ function rsDoLogin(){
                   </svg>
                   <div style="flex:1">
                     <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Avaliação</div>
-                    <div :style="{fontSize:'14px',fontWeight:800,color:scoreColor(viewCand.analysis.score&&viewCand.analysis.score.total||0),marginBottom:'3px'}">{{viewCand.analysis.classification||'\u2014'}}</div>
-                    <div style="font-size:11px;color:rgba(255,255,255,.7)">{{viewCand.analysis.recommendation||'\u2014'}}</div>
+                    <div :style="{fontSize:'14px',fontWeight:800,color:scoreColor(viewCand.analysis.score&&viewCand.analysis.score.total||0),marginBottom:'3px'}">{{viewCand.analysis.classification||''}}</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,.7)">{{viewCand.analysis.recommendation||''}}</div>
                   </div>
                   <div v-if="viewCand.analysis.culturalFit" :style="{flexShrink:0,textAlign:'center',background:viewCand.analysis.culturalFit.level==='Alto fit cultural'?'rgba(22,163,74,.2)':'rgba(234,88,12,.2)',border:'1px solid '+( viewCand.analysis.culturalFit.level==='Alto fit cultural'?'rgba(22,163,74,.4)':'rgba(234,88,12,.4)'),borderRadius:'9px',padding:'8px 12px'}">
                     <i class="ti ti-heart" :style="{fontSize:'16px',color:viewCand.analysis.culturalFit.level==='Alto fit cultural'?'#4ADE80':'#FB923C',display:'block',marginBottom:'3px'}"></i>
@@ -1070,7 +1067,7 @@ function rsDoLogin(){
 
                 <!-- ③ Score bars 2×2 -->
                 <div v-if="viewCand.analysis.score" style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px">
-                  <div v-for="d in [{l:'Hard Skills',v:viewCand.analysis.score.hardSkills||0,m:50,ic:'ti-code'},{l:'Experi\u00eancia',v:viewCand.analysis.score.experience||0,m:25,ic:'ti-briefcase'},{l:'Soft Skills',v:viewCand.analysis.score.softSkills||0,m:15,ic:'ti-users'},{l:'Fit Cultural',v:viewCand.analysis.score.culturalFit||0,m:10,ic:'ti-heart'}]" :key="d.l"
+                  <div v-for="d in [{l:'Hard Skills',v:viewCand.analysis.score.hardSkills||0,m:50,ic:'ti-code'},{l:'Experiência',v:viewCand.analysis.score.experience||0,m:25,ic:'ti-briefcase'},{l:'Soft Skills',v:viewCand.analysis.score.softSkills||0,m:15,ic:'ti-users'},{l:'Fit Cultural',v:viewCand.analysis.score.culturalFit||0,m:10,ic:'ti-heart'}]" :key="d.l"
                     style="background:#fff;border:1px solid #E5E7EB;border-radius:9px;padding:9px 11px">
                     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">
                       <div style="display:flex;align-items:center;gap:5px">
@@ -1283,7 +1280,7 @@ function rsDoLogin(){
                 <div style="border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;background:#fff">
                   <div style="padding:8px 12px;background:#F8FAFC;border-bottom:1px solid #E5E7EB;display:flex;align-items:center;gap:7px">
                     <div style="width:20px;height:20px;border-radius:50%;background:#2563EB;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff">RH</div>
-                    <span style="font-size:11px;color:#64748B">{{getNote(viewCand.id)?'Editar observa\u00e7\u00e3o...':'Adicionar observa\u00e7\u00e3o...'}}</span>
+                    <span style="font-size:11px;color:#64748B">{{getNote(viewCand.id)?'Editar nota...':'Adicionar nota...'}}</span>
                   </div>
                   <textarea :value="getNote(viewCand.id)" @input="saveNote(viewCand.id,$event.target.value)" placeholder="Registre observações para uso interno do RH sobre este candidato..." rows="5" style="border:none;border-radius:0;font-size:12.5px;line-height:1.75;resize:vertical;background:#fff"></textarea>
                 </div>
@@ -1378,7 +1375,7 @@ function rsDoLogin(){
             <div v-if="latestResult.analysis&&latestResult.analysis.score" style="padding:14px 20px;border-bottom:1px solid #E5E7EB">
               <div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Avaliação por dimensão</div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                <div v-for="d in [{l:'Hard Skills',v:latestResult.analysis.score.hardSkills||0,m:50},{l:'Experi\u00eancia',v:latestResult.analysis.score.experience||0,m:25},{l:'Soft Skills',v:latestResult.analysis.score.softSkills||0,m:15},{l:'Fit Cultural',v:latestResult.analysis.score.culturalFit||0,m:10}]" :key="d.l">
+                <div v-for="d in [{l:'Hard Skills',v:latestResult.analysis.score.hardSkills||0,m:50},{l:'Experiência',v:latestResult.analysis.score.experience||0,m:25},{l:'Soft Skills',v:latestResult.analysis.score.softSkills||0,m:15},{l:'Fit Cultural',v:latestResult.analysis.score.culturalFit||0,m:10}]" :key="d.l">
                   <div style="display:flex;justify-content:space-between;margin-bottom:3px">
                     <span style="font-size:11px;color:#64748B">{{d.l}}</span>
                     <span :style="{fontSize:'11px',fontWeight:700,color:scoreColor(Math.round(d.v/d.m*100))}">{{d.v}}/{{d.m}}</span>
@@ -1452,8 +1449,8 @@ function rsDoLogin(){
                   <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap">
                     <span v-if="c.analysis&&c.analysis.classification" :style="{fontSize:'9.5px',fontWeight:600,padding:'2px 7px',borderRadius:'99px',background:scoreBgCol(c.analysis&&c.analysis.score&&c.analysis.score.total||0),color:scoreColor(c.analysis&&c.analysis.score&&c.analysis.score.total||0)}">{{c.analysis.classification}}</span>
                     <span v-if="c.analysis&&c.analysis.culturalFit" style="font-size:9.5px;color:#64748B;display:flex;align-items:center;gap:2px">
-                      <i class="ti ti-heart" :style="{fontSize:'10px',color:c.analysis.culturalFit.level==='Alto fit cultural'?'#16A34A':c.analysis.culturalFit.level==='M\u00e9dio fit cultural'?'#EA580C':'#DC2626'}"></i>
-                      <span :style="{color:c.analysis.culturalFit.level==='Alto fit cultural'?'#16A34A':c.analysis.culturalFit.level==='M\u00e9dio fit cultural'?'#EA580C':'#DC2626'}">{{c.analysis.culturalFit.level.replace(' fit cultural','')}}</span>
+                      <i class="ti ti-heart" :style="{fontSize:'10px',color:c.analysis.culturalFit.level==='Alto fit cultural'?'#16A34A':c.analysis.culturalFit.level==='Médio fit cultural'?'#EA580C':'#DC2626'}"></i>
+                      <span :style="{color:c.analysis.culturalFit.level==='Alto fit cultural'?'#16A34A':c.analysis.culturalFit.level==='Médio fit cultural'?'#EA580C':'#DC2626'}">{{c.analysis.culturalFit.level.replace(' fit cultural','')}}</span>
                     </span>
                   </div>
                 </div>
@@ -1492,7 +1489,7 @@ function rsDoLogin(){
               <span style="font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em">Score médio</span>
               <div style="width:28px;height:28px;border-radius:7px;background:#F5F3FF;display:flex;align-items:center;justify-content:center"><i class="ti ti-star" style="font-size:14px;color:#7C3AED"></i></div>
             </div>
-            <div style="font-size:28px;font-weight:800;color:#7C3AED;letter-spacing:-.5px;margin-bottom:3px">{{candidates.filter(c=>c.status==='banco'&&c.score>0).length?Math.round(candidates.filter(c=>c.status==='banco'&&c.score>0).reduce((s,c)=>s+c.score,0)/candidates.filter(c=>c.status==='banco'&&c.score>0).length):'\u2014'}}</div>
+            <div style="font-size:28px;font-weight:800;color:#7C3AED;letter-spacing:-.5px;margin-bottom:3px">{{candidates.filter(c=>c.status==='banco'&&c.score>0).length?Math.round(candidates.filter(c=>c.status==='banco'&&c.score>0).reduce((s,c)=>s+c.score,0)/candidates.filter(c=>c.status==='banco'&&c.score>0).length):''}}</div>
             <div style="font-size:11px;color:#64748B">Pontuação média</div>
           </div>
           <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:16px;position:relative;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.05)">
@@ -1565,7 +1562,7 @@ function rsDoLogin(){
               </div>
               <!-- Score mini bars -->
               <div v-if="c.analysis&&c.analysis.score" style="display:grid;grid-template-columns:1fr 1fr;gap:5px 14px">
-                <div v-for="d in [{l:'Hard Skills',v:c.analysis.score.hardSkills||0,m:50},{l:'Experi\u00eancia',v:c.analysis.score.experience||0,m:25}]" :key="d.l">
+                <div v-for="d in [{l:'Hard Skills',v:c.analysis.score.hardSkills||0,m:50},{l:'Experiência',v:c.analysis.score.experience||0,m:25}]" :key="d.l">
                   <div style="display:flex;justify-content:space-between;margin-bottom:2px">
                     <span style="font-size:9.5px;color:#94A3B8">{{d.l}}</span>
                     <span :style="{fontSize:'9.5px',fontWeight:700,color:scoreColor(Math.round(d.v/d.m*100))}">{{d.v}}/{{d.m}}</span>
@@ -1578,7 +1575,7 @@ function rsDoLogin(){
             </div>
             <!-- Footer -->
             <div style="padding:8px 16px;border-top:1px solid #F1F5F9;display:flex;align-items:center;justify-content:space-between">
-              <span style="font-size:10px;color:#94A3B8"><i class="ti ti-calendar" style="font-size:10px"></i> {{c.submittedAt&&c.submittedAt.split(',')[0]||'\u2014'}}</span>
+              <span style="font-size:10px;color:#94A3B8"><i class="ti ti-calendar" style="font-size:10px"></i> {{c.submittedAt&&c.submittedAt.split(',')[0]||''}}</span>
               <span style="font-size:10px;color:#2563EB;font-weight:600;display:flex;align-items:center;gap:3px">Ver perfil <i class="ti ti-arrow-right" style="font-size:10px"></i></span>
             </div>
           </div>
@@ -1610,7 +1607,9 @@ function rsDoLogin(){
 
     </div>
   </div>
-</div></script>
+</div>
+
+  </script>
 </div>
 <script>
 
@@ -1637,7 +1636,7 @@ function _i(e,t){const n=ns(e);class s extends xi{constructor(e){super(n,e,t)}}r
 
 
 
-const DEFAULT_API_KEY = "sk-ant-api03-zLMmuZ7j_37ABIjOWd5CB6FlcsETJIdlKgCT6MN0Kni445-_FjH5G4eruDMmrJ1ZCua8kcfn4LZp2oaSqmKMPdx7SA3g-_r_AWQAA";
+const DEFAULT_API_KEY = "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";
 const DEFAULT_JB_KEY = "$2a$10$T64Xg0L6izM2FedcG0Hdfu2ofiCd8dEjMNg24oQBHqedY.8heo5IS";
 const DEFAULT_JB_BIN = "6a318f8ff5f4af5e29fcd518";
 
@@ -2090,17 +2089,23 @@ const {createApp,ref,computed,watch,onMounted}=Vue;
 createApp({
   template: document.getElementById('app-tpl').innerHTML,
   errorCaptured(err){
-    console.error('Vue error:', err);
-    var msg='Erro Vue: '+(err.message||String(err));
-    var errDiv=document.getElementById('vue-err');
-    if(errDiv){errDiv.innerHTML=msg;errDiv.style.cssText='display:block;position:fixed;top:10px;left:10px;right:10px;background:#DC2626;color:#fff;padding:12px;border-radius:8px;z-index:999999;font-family:monospace;font-size:13px';}
+    var el=document.getElementById('vue-err');
+    if(el){el.textContent='Erro: '+err.message;el.style.display='block';}
     return false;
   },
   setup(){
-    // ── USERS & AUTH ─────────────────────────────────────────────────────────
-    var RS_USERS=window.RS_USERS||[];
+    // ── AUTH ──────────────────────────────────────────────────────────────
     var currentUser=ref(null);
-    // Restore session from localStorage
+    function greeting(){var h=new Date().getHours();return h<12?'Bom dia':h<18?'Boa tarde':'Boa noite';}
+    function rsLogout(){
+      try{localStorage.removeItem('rsrh_user');}catch(e){}
+      currentUser.value=null;
+      var el=document.getElementById('rs-login');
+      if(el){el.classList.remove('rs-hidden');el.style.display='flex';}
+      var u=document.getElementById('rs-u');var p=document.getElementById('rs-p');
+      if(u)u.value=''; if(p)p.value='';
+    }
+    // Session restore
     (function(){
       try{
         var s=localStorage.getItem('rsrh_user');
@@ -2108,31 +2113,17 @@ createApp({
           var found=window.RS_USERS.find(function(x){return x.id===s;});
           if(found){
             currentUser.value=found;
-            var loginEl=document.getElementById('rs-login');
-            if(loginEl)loginEl.classList.add('rs-hidden');
+            var el=document.getElementById('rs-login');
+            if(el)el.classList.add('rs-hidden');
           }
         }
       }catch(e){}
     })();
-    // Expose setter so the login script can update Vue reactively
     window._vueSetUser=function(u){
       currentUser.value=u;
       var el=document.getElementById('rs-login');
       if(el)el.classList.add('rs-hidden');
     };
-    window._vueLogout=function(){currentUser.value=null;};
-    function greeting(){var h=new Date().getHours();return h<12?'Bom dia':h<18?'Boa tarde':'Boa noite';}
-    function rsLogout(){
-      try{localStorage.removeItem('rsrh_user');}catch(e){}
-      currentUser.value=null;
-      var el=document.getElementById('rs-login');
-      if(el){
-        el.classList.remove('rs-hidden');
-        el.style.display='flex';
-      }
-      document.getElementById('rs-u') && (document.getElementById('rs-u').value='');
-      document.getElementById('rs-p') && (document.getElementById('rs-p').value='');
-    }
     var navItems=[{id:'dashboard',label:'Dashboard',icon:'ti-layout-dashboard'},{id:'jobs',label:'Vagas',icon:'ti-briefcase'},{id:'candidates',label:'Candidatos',icon:'ti-users'},{id:'pipeline',label:'Pipeline',icon:'ti-git-merge'},{id:'analyze',label:'Analisar currículo',icon:'ti-file-search'},{id:'banco',label:'Banco de talentos',icon:'ti-database'}];
     var nav=ref('dashboard'),prevNav=ref('dashboard');
     var jobs=ref(lsGet('recruitarh_jobs',[]));
@@ -2342,13 +2333,22 @@ createApp({
     }
     function saveSyncConfig(){
       if(!jbKeyInput.value.trim())return;
-      jbCreating.value=true;
       var key=jbKeyInput.value.trim();
-      jsonBinCreate(key).then(function(id){
-        if(id){jbKey.value=key;jbBin.value=id;jbKeyInput.value='';showSyncModal.value=false;pushSync();flash('Compartilhamento ativado!');}
-        else{flash('Erro: verifique a chave JSONBin');}
-        jbCreating.value=false;
-      });
+      var existingId=(jbExistingId.value||'').trim();
+      if(existingId){
+        jbKey.value=key;jbBin.value=existingId;
+        jbKeyInput.value='';jbExistingId.value='';
+        showSyncModal.value=false;
+        pullSync();
+        flash('Conectado! Sincronizando...');
+      } else {
+        jbCreating.value=true;
+        jsonBinCreate(key).then(function(id){
+          if(id){jbKey.value=key;jbBin.value=id;jbKeyInput.value='';jbExistingId.value='';showSyncModal.value=false;pushSync();flash('Compartilhamento ativado!');}
+          else{flash('Erro: verifique a chave JSONBin');}
+          jbCreating.value=false;
+        });
+      }
     }
     function deactivateSync(){jbKey.value='';jbBin.value='';jbStatus.value='';flash('Compartilhamento desativado');}
 
@@ -2645,11 +2645,11 @@ createApp({
     function cancelEditAnalysis(){editAnaMode.value=false;}
 
     return {
-      navItems,nav,currentUser,greeting,setCandField,rsLogout,jobs,candidates,notes,apiKey,showApiModal,newApiKey,
+      navItems,nav,currentUser,greeting,rsLogout,jobs,candidates,notes,apiKey,showApiModal,newApiKey,
       showJobModal,editingJob,jf,ejf,selJobId,pdfFile,isDragging,
       isAnalyzing,analyzeStep,latestResult,viewCand,error,pipFilter,saveMsg,
       isGenSum,genSumStep,metrics,dashCards,filtCands,vcTrans,scoreBars,execBlocks,summaryRows,STAGES,
-      jbKey,jbBin,jbStatus,showSyncModal,jbKeyInput,jbCreating,
+      jbKey,jbBin,jbStatus,showSyncModal,jbKeyInput,jbCreating,jbExistingId,
       editingField,editFieldVal,
       flash,goTo,goBack,goToFiltered,openDetail,addJob,openEdit,saveJob,handleFile,onFileDrop,analyze,
       advanceStatus,saveNote,getNote,getTranscript,setTranscript,getSummary,getIntDate,setIntDate,
